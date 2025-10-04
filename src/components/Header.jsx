@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Home } from './Home'
 import { About } from './About'
 import { Contact } from './Contact'
-import { IconMenu2 } from '@tabler/icons-react'
+import { IconMenu2, IconBrandX, IconBrandInstagram, IconBrandYoutube } from '@tabler/icons-react'
 import { AppLogo } from './AppLogo'
 
 
@@ -44,13 +44,25 @@ export const Header = () => {
                     </button>
                     {/* Mobile Menu */}
                     {isOpen && (
-                        <div className="absolute inset-x-0 top-12  flex flex-col md:hidden bg-blue-500 backdrop-blur-sm">
+                        <div className="absolute inset-x-0  top-12  flex flex-col md:hidden bg-neutral-200 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
                             {tabs.map((tab) => (
-                                <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 my-1' : 'my-1 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')} onClick={() => setIsOpen(false)}>
+                                <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'rounded-md px-3 py-2 my-1' : 'my-1 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')} >
                                     {tab.title}
                                 </NavLink>
                             ))}
+
+                            <div aria-label='social-icons' className="flex justify-center space-x-3 my-2">
+                                <IconBrandX stroke={2} size={24} />
+                                <IconBrandInstagram stroke={2} size={24} />
+                                <IconBrandYoutube stroke={2} size={24} />
+                            </div>
+                            <div className="p-3 text-sm text-gray-500 text-center">
+                                &copy; {new Date().getFullYear()} Weather 24 App. All rights reserved.
+
+
+                            </div>
                         </div>
+
                     )}
                 </nav>
             </header>
