@@ -1,8 +1,10 @@
 import React from 'react'
+import { Features } from './Features'
 
 export const Home = () => {
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-[95vh] ">
+    <>
+    <section aria-label='hero section' className="flex flex-col-reverse md:flex-row items-center px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-[95vh] ">
       {/* Left: Text */}
       <div className="flex-1 text-center md:text-left mb-8 md:mb-0 mx-1 my-4 md:mx-20">
         <h1 className="text-4xl md:text-6xl font-bold text-blue-700 mb-4">
@@ -43,5 +45,7 @@ export const Home = () => {
         </div>
       </div>
     </section>
+<Features/>
+</>
   )
 }
