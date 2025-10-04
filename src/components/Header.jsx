@@ -24,7 +24,7 @@ export const Header = () => {
         <Router>
             {/* Header */}
             <header className='sticky top-0 z-50 flex justify-between items-center mx-auto md:mt-2 p-3 bg-neutral-200'>
-                <div className="logo text-red-400">
+                <div className="logo">
                     <AppLogo />
                 </div>
                 {/* navigation bar */}
