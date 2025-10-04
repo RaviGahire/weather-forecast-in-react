@@ -5,6 +5,7 @@ import { Home } from './Home'
 import { About } from './About'
 import { Contact } from './Contact'
 import { IconMenu2 } from '@tabler/icons-react'
+import { AppLogo } from './AppLogo'
 
 
 
@@ -20,28 +21,28 @@ export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-
-
         <Router>
             {/* Header */}
-            <header className='max-w-7xl flex justify-between items-center mx-auto md:my-4 p-3 md:rounded-lg bg-blue-500 backdrop-blur-sm '>
-                <div className="logo text-red-400">logo</div>
+            <header className='sticky top-0 z-50 flex justify-between items-center mx-auto md:mt-2 p-3 bg-neutral-200'>
+                <div className="logo text-red-400">
+                    <AppLogo />
+                </div>
                 {/* navigation bar */}
                 <nav className='flex md:flex-row flex-col  '>
                     {tabs.map((tab) => (
 
-                       <div className="hidden md:flex" key={tab.id}>
-                         <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 mx-2' : 'mx-2 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')}>
-                            {tab.title}
-                        </NavLink>
-                       </div>
+                        <div className="hidden md:flex" key={tab.id}>
+                            <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 mx-2' : 'mx-2 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')}>
+                                {tab.title}
+                            </NavLink>
+                        </div>
 
                     ))}
                     {/* Menu Btn */}
                     <button className='md:hidden' onClick={() => setIsOpen(!isOpen)}>
-                        <IconMenu2 size={24}  />
+                        <IconMenu2 size={24} />
                     </button>
-                    {/* Mobile Menu */ }
+                    {/* Mobile Menu */}
                     {isOpen && (
                         <div className="absolute inset-x-0 top-12  flex flex-col md:hidden bg-blue-500 backdrop-blur-sm">
                             {tabs.map((tab) => (
