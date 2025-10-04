@@ -1,8 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
+import { useState } from 'react'
 import { Home } from './Home'
 import { About } from './About'
 import { Contact } from './Contact'
+import { IconMenu2 } from '@tabler/icons-react'
 
 
 
@@ -12,37 +14,52 @@ export const Header = () => {
         { id: 2, path: "/about", element: <About />, title: "About" },
         { id: 3, path: "/contact", element: <Contact />, title: "Contact" },
 
-        
+
     ];
 
-
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
-            {/* Header */}
-            <header aria-label='website-header' className='header bg-blue-400 text-white p-4 flex justify-between items-center'>
-                <nav className='bg-transparent '>
-                    <Router>
-                        {tabs.map((tab) => (
-                            <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 mx-2' : 'mx-2 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')}>
-                                {tab.title}
-                            </NavLink>
-                        ))}
 
-                        {/* Routes for the navigation */}
-                        <Routes>
+
+        <Router>
+            {/* Header */}
+            <header className='max-w-7xl flex justify-between items-center mx-auto md:my-4 p-3 md:rounded-lg bg-blue-500 backdrop-blur-sm '>
+                <div className="logo text-red-400">logo</div>
+                {/* navigation bar */}
+                <nav className='flex md:flex-row flex-col  '>
+                    {tabs.map((tab) => (
+
+                       <div className="hidden md:flex" key={tab.id}>
+                         <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 mx-2' : 'mx-2 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')}>
+                            {tab.title}
+                        </NavLink>
+                       </div>
+
+                    ))}
+                    {/* Menu Btn */}
+                    <button className='md:hidden' onClick={() => setIsOpen(!isOpen)}>
+                        <IconMenu2 size={24}  />
+                    </button>
+                    {/* Mobile Menu */ }
+                    {isOpen && (
+                        <div className="absolute inset-x-0 top-12  flex flex-col md:hidden bg-blue-500 backdrop-blur-sm">
                             {tabs.map((tab) => (
-                                <Route key={tab.id} path={tab.path} element={tab.element} />
+                                <NavLink key={tab.id} to={tab.path} className={({ isActive }) => (isActive ? 'text-white bg-blue-600 rounded-md px-3 py-2 my-1' : 'my-1 px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md')} onClick={() => setIsOpen(false)}>
+                                    {tab.title}
+                                </NavLink>
                             ))}
-                        </Routes>
-                    </Router>
+                        </div>
+                    )}
                 </nav>
             </header>
-
-
-
-        </>
-
+            {/* Navigation Routes */}
+            <Routes>
+                {tabs.map((tab) => (
+                    <Route key={tab.id} path={tab.path} element={tab.element} />
+                ))}
+            </Routes>
+        </Router>
 
     )
 }
