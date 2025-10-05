@@ -11,38 +11,129 @@ export function CarouselSpacing() {
       <Carousel>
         <CarouselContent className='-ml-4'>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              1
+            <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              2
+            <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              3
+              <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              4
+              <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              5
+          <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              6
+            <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
           <CarouselItem className='basis-1/3 pl-4'>
-            <div className='flex aspect-square items-center justify-center border border-zinc-200 dark:border-zinc-800'>
-              7
+             <div className='flex items-center justify-center bg-zinc-500 rounded-xl overflow-hidden '>
+              {/* review card */}
+              <div className="bg-white border-l-4 border-indigo-500 p-6 w-screen h-full ">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://i.pravatar.cc/80?img=12" alt="user" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Noah Williams</h3>
+                    <p className="text-sm text-gray-500">Frequent Shopper</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-3">"I’m really impressed by how easy it is to use and how responsive the team has been."</p>
+                <div className="flex gap-1 text-yellow-400">
+                  ★★★★☆
+                </div>
+              </div>
             </div>
           </CarouselItem>
         </CarouselContent>
