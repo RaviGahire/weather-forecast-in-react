@@ -1,6 +1,6 @@
 import React from 'react'
 import { Features } from './Features'
-import { Review } from './Review'
+import { CarouselSpacing } from './Review'
 
 export const Home = () => {
   return (
@@ -47,7 +47,7 @@ export const Home = () => {
       </div>
     </section>
 <Features/>
-<Review/>
+<CarouselSpacing/>
 </>
   )
 }
