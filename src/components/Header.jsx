@@ -6,16 +6,16 @@ import { About } from './About'
 import { Contact } from './Contact'
 import { IconMenu2, IconBrandX, IconBrandInstagram, IconBrandYoutube } from '@tabler/icons-react'
 import { AppLogo } from './AppLogo'
-import { Dashboard } from './Dashboard'
-import { News } from './News'
+import { WeatherDashboard } from './Dashboard'
+import { WeatherNews } from './News'
 
 
 
 export const Header = () => {
     const tabs = [
         { id: 1, path: "/", element: <Home />, title: "Home" },
-        { id: 2, path: "/dashboard", element: <Dashboard />, title: "Forecaster" },
-        { id: 3, path: "/news", element: <News />, title: "Weather News" },
+        { id: 2, path: "/dashboard", element: <WeatherDashboard />, title: "Forecaster" },
+        { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },
         { id: 4, path: "/about", element: <About />, title: "About" },
         { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
     ];
