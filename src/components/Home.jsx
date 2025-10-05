@@ -1,5 +1,6 @@
 import React from 'react'
 import { Features } from './Features'
+import { Review } from './Review'
 
 export const Home = () => {
   return (
@@ -46,6 +47,7 @@ export const Home = () => {
       </div>
     </section>
 <Features/>
+<Review/>
 </>
   )
 }
