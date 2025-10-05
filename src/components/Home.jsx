@@ -1,6 +1,7 @@
 import React from 'react'
 import { Features } from './Features'
 import { CarouselSpacing } from './Review'
+import { AccordionIcons } from './FaqSection'
 
 export const Home = () => {
   return (
@@ -50,6 +51,7 @@ export const Home = () => {
       <div className="max-w-7xl mx-auto my-20">
         <CarouselSpacing />
       </div>
+      <AccordionIcons/>
     </>
   )
 }
