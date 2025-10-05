@@ -51,7 +51,23 @@ export const Home = () => {
       <div className="max-w-7xl mx-auto my-20">
         <CarouselSpacing />
       </div>
-      <AccordionIcons/>
+      <section aria-label='faq section' className="px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
+        <div className="bg-white rounded-2xl shadow-lg p-8 mx-auto max-w-2xl flex flex-col items-center text-center mt-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
+            Experience the weather like never before
+          </h2>
+          <h2 className="text-lg md:text-2xl text-blue-600 mb-6">
+            The Only Weather App You Need to Stay Connected with Nature and Each Other
+          </h2>
+          <button className="bg-blue-500 text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition text-lg">
+            Download Now
+          </button>
+        </div>
+        <AccordionIcons />
+
+
+      </section>
+
     </>
   )
 }
