@@ -2,6 +2,7 @@ import React from 'react'
 import { Features } from './Features'
 import { CarouselSpacing } from './Review'
 import { AccordionIcons } from './FaqSection'
+import { Footer } from './Footer'
 
 export const Home = () => {
   return (
@@ -67,6 +68,8 @@ export const Home = () => {
 
 
       </section>
+
+<Footer/>
 
     </>
   )
