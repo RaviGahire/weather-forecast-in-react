@@ -6,16 +6,18 @@ import { About } from './About'
 import { Contact } from './Contact'
 import { IconMenu2, IconBrandX, IconBrandInstagram, IconBrandYoutube } from '@tabler/icons-react'
 import { AppLogo } from './AppLogo'
+import { Dashboard } from './Dashboard'
+import { News } from './News'
 
 
 
 export const Header = () => {
     const tabs = [
         { id: 1, path: "/", element: <Home />, title: "Home" },
-        { id: 2, path: "/about", element: <About />, title: "About" },
-        { id: 3, path: "/contact", element: <Contact />, title: "Contact" },
-
-
+        { id: 2, path: "/dashboard", element: <Dashboard />, title: "Forecaster" },
+        { id: 3, path: "/news", element: <News />, title: "Weather News" },
+        { id: 4, path: "/about", element: <About />, title: "About" },
+        { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
     ];
 
     const [isOpen, setIsOpen] = useState(false);
@@ -58,11 +60,8 @@ export const Header = () => {
                             </div>
                             <div className="p-3 text-sm text-gray-500 text-center">
                                 &copy; {new Date().getFullYear()} Weather 24 App. All rights reserved.
-
-
                             </div>
                         </div>
-
                     )}
                 </nav>
             </header>
