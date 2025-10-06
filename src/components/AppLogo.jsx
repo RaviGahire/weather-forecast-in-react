@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 export const AppLogo = () => {
     return (
         <Link to="/">
-            <div className='flex items-baseline font-semibold text-xl md:text-3xl tracking-wide text-blue-500 cursor-pointer'>
+            <div className='flex items-baseline font-semibold text-xl md:text-3xl tracking-wide text-neutral-50 cursor-pointer'>
                 <motion.svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
