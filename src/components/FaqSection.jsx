@@ -3,7 +3,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from './../components/accordion';
+} from './motion-primitives/accordion';
 import { ChevronUp } from 'lucide-react';
 
 export function AccordionIcons() {

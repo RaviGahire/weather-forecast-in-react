@@ -3,7 +3,7 @@ import {
   CarouselContent,
   CarouselNavigation,
   CarouselItem,
-} from './../components/Carousel';
+} from './motion-primitives/carousel';
 
 export function CarouselSpacing() {
   return (
