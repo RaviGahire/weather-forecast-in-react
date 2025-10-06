@@ -11,6 +11,7 @@ export type AnimatedNumberProps = {
 };
 
 export function AnimatedNumber({
+  
   value,
   className,
   springOptions,
