@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Features } from './Features'
 import { CarouselSpacing } from './Review'
 import { AccordionIcons } from './FaqSection'
@@ -6,6 +6,27 @@ import { Footer } from './Footer'
 import { TextRollCustomVariants } from './TextAnimation'
 
 export const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate API loading
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+
+  if (loading) {
+    return (
+      <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
+          <p className="text-white text-lg">Loading Weather...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <section aria-label='hero section' className="flex flex-col-reverse md:flex-row items-center px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-[95vh] ">
