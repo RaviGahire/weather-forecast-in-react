@@ -19,10 +19,10 @@ export const Home = () => {
           <p className='text-neutral-600 my-2'>1million People like you have purchased this product!</p>
           {/* hero btns */}
           <div className=" flex justify-center flex-col md:flex-row md:justify-start space-y-4 md:space-y-0">
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
+            <button className="bg-blue-600 cursor-pointer text-white px-6 py-3 md:mr-4 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
               Try It Now
             </button>
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
+            <button className="bg-blue-600 cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
               FREE TILL 15JUN2023
             </button>
           </div>
