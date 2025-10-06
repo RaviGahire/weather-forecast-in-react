@@ -3,6 +3,7 @@ import { Features } from './Features'
 import { CarouselSpacing } from './Review'
 import { AccordionIcons } from './FaqSection'
 import { Footer } from './Footer'
+import { TextRollCustomVariants } from './TextAnimation'
 
 export const Home = () => {
   return (
@@ -10,9 +11,10 @@ export const Home = () => {
       <section aria-label='hero section' className="flex flex-col-reverse md:flex-row items-center px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-[95vh] ">
         {/* Left: Text */}
         <div className="flex-1 text-center md:text-left mb-8 md:mb-0 mx-1 my-4 md:mx-20">
-          <h1 className="text-4xl md:text-6xl font-bold text-blue-700 mb-4">
-            Weather-24 Your Live Forecaster
-          </h1>
+          <div className="text-3xl sm:text-4xl  w-80 mx-auto md:mx-0 md:text-6xl md:w-[650px] font-bold text-blue-700 mb-4 ">
+            <TextRollCustomVariants />
+          </div>
+
           <p className="text-md md:text-2xl text-blue-900 mb-4">
             Together We Forecast: Building Dreams, One Day at a Time! Get instant, accurate weather updates for your city. Stay prepared, wherever you are!
           </p>
@@ -69,7 +71,7 @@ export const Home = () => {
 
       </section>
 
-<Footer/>
+      <Footer />
 
     </>
   )
