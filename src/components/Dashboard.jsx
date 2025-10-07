@@ -2,12 +2,28 @@
 import React, { useState } from "react";
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Footer } from "./Footer";
+import { WindCompass } from "./Compass";
 
 export const WeatherDashboard = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerView = 6;
     const [cityIndex, setCityIndex] = useState(0);
+    // Direction compass
+    const deg = 40
+    const getWindDirectionText = (deg) => {
+        const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+        const index = Math.round(deg / 22.5) % 16;
+        console.log(index)
+        return directions[index];
+    };
+
+    console.log(getWindDirectionText(deg))
+
+    // <div className="text-[32px] font-semibold mb-5">
+    //     {windSpeed}kt {getWindDirectionText(windDirection)}
+    // </div>
+
     const hourlyData = [
         { time: '5 AM', icon: '☁️', temp: '22°' },
         { time: '6 AM', icon: '☁️', temp: '22°' },
@@ -146,7 +162,7 @@ export const WeatherDashboard = () => {
 
                         {/* Bottom Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            {/* Wind Card */}
+                            {/* Wind Card  Direction Compass*/}
                             <div className="bg-[#243447] rounded-xl p-6">
                                 <h3 className="flex items-center gap-2 text-sm font-normal text-[#8b9bb4] mb-5">
                                     <svg className="w-4 h-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -154,19 +170,10 @@ export const WeatherDashboard = () => {
                                     </svg>
                                     Wind
                                 </h3>
-
                                 <div className="text-[32px] font-semibold mb-5">4kt W</div>
-                                <div className="relative w-[120px] h-[120px] mx-auto border-2 border-[#3a4d66] rounded-full">
-                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 text-xs text-[#8b9bb4] font-medium">N</div>
-                                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-[#8b9bb4] font-medium">S</div>
-                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-[#8b9bb4] font-medium">E</div>
-                                    <div className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-[#8b9bb4] font-medium">W</div>
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
-                                    <div className="absolute top-1/2 left-1/2 w-0.5 h-[45px] bg-white origin-bottom -translate-x-1/2 -translate-y-full rotate-180">
-                                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-white"></div>
-                                    </div>
+                                <div className="mx-auto flex align-center justify-center">
+                                    <WindCompass windSpeed={80} windDirection={88.00} />
                                 </div>
-
                                 <div className="text-center text-[13px] text-[#8b9bb4] mt-4">
                                     Very gentle wind.
                                 </div>
