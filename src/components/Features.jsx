@@ -1,26 +1,19 @@
 import React from 'react'
-import { PersonalizedIcon, GalleryIcon, MoodTrackerIcon } from './AnimatedSvg'
+import { motion } from 'motion/react'
+import { PersonalizedIcon, GalleryIcon, MoodTrackerIcon, PersonalizedCard, GalleryCard,MoodTrackerCard} from './AnimatedSvg'
 export const Features = () => {
     return (
-        <section className="max-w-7xl mx-auto py-12 px-4">
+        <section className="max-w-7xl mx-auto py-4 md:py-12 px-4">
             {/* Top Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-12">
                 {/* Feature 1 */}
-                <div className="bg-blue-100 rounded-2xl shadow-lg px-4 py-4 flex flex-col items-start text-center hover:shadow-blue-200 transition duration-300">
-                    <h3 className="text-2xl font-bold text-blue-600 mb-3 flex items-center gap-x-2"><PersonalizedIcon />Personalized</h3>
-                    <p className="text-gray-700 text-base text-start ">A personalized weather report that shows the best time and place for couples to enjoy outdoor activities based on their preferences and location.</p>
-                </div>
+                <PersonalizedCard />
                 {/* Feature 2 */}
-                <div className="bg-blue-100 rounded-2xl shadow-lg px-4 py-4 flex flex-col items-start text-center hover:shadow-blue-200 transition duration-300">
-                    <h3 className="text-2xl font-bold text-blue-600 mb-3 flex items-center gap-x-2"><GalleryIcon />Gallery</h3>
-                    <p className="text-gray-700 text-base text-start ">A cloud gallery that allows users to upload and share their photos and videos of the sky and the weather with other users and get feedback and tips.</p>
-                </div>
+                <GalleryCard />
                 {/* Feature 3 */}
-                <div className="bg-blue-100 rounded-2xl shadow-lg px-4 py-4 flex flex-col items-start text-center hover:shadow-blue-200 transition duration-300">
-                    <h3 className="text-2xl font-bold text-blue-600 mb-3 flex items-center gap-x-2"><MoodTrackerIcon />Mood Tracker</h3>
-                    <p className="text-gray-700 text-base text-start">A mood tracker that analyzes the user’s mood based on the weather and suggests activities, music, or quotes to cheer them up or calm them down.</p>
-                </div>
+               <MoodTrackerCard/>
             </div>
+
             {/* Big Feature Section */}
             <div className="bg-gradient-to-r from-blue-100 to-blue-300 rounded-2xl shadow-xl flex flex-col md:flex-row items-center p-8 md:p-12">
 
