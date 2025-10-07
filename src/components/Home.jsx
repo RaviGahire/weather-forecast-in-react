@@ -134,7 +134,7 @@ export const Home = () => {
       `}</style>
       </section>
       <Features />
-      <div className="max-w-7xl mx-auto my-20">
+      <div aria-label='customer review' className="max-w-7xl mx-auto mb-20  ">
         <CarouselSpacing />
       </div>
       <section aria-label='faq section' className="px-3 py-12 md:py-20 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
@@ -150,12 +150,8 @@ export const Home = () => {
           </button>
         </div>
         <AccordionIcons />
-
-
       </section>
-
       <Footer />
-
     </>
   )
 }
