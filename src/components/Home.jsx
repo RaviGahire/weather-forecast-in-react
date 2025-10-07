@@ -145,7 +145,7 @@ export const Home = () => {
           <h2 className="text-lg md:text-2xl text-blue-600 mb-6">
             The Only Weather App You Need to Stay Connected with Nature and Each Other
           </h2>
-          <button className="bg-blue-500 text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition text-lg">
+          <button className="bg-blue-500 text-white px-8 cursor-pointer py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition text-lg">
             Download Now
           </button>
         </div>
