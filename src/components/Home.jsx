@@ -35,7 +35,7 @@ export const Home = () => {
     >
       {/* Left: Text Content */}
       <div className="flex-1 w-full text-center lg:text-left mb-8 lg:mb-0 max-w-2xl lg:max-w-none">
-        <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-700 mb-4 sm:mb-6">
+        <div className=" max-w-[250px]  sm:max-w-[400px] md:w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-700 mb-4 sm:mb-6">
           <TextRollCustomVariants />
         </div>
 
