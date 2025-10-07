@@ -53,7 +53,7 @@ export const Home = () => {
             Try It Now
           </button>
           <button className="bg-blue-600 cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300 text-sm sm:text-base">
-            FREE TILL 15JUN2023
+            Free Till Today
           </button>
         </div>
       </div>
@@ -68,11 +68,11 @@ export const Home = () => {
               <img 
                 src="/src/assets/iphone-1.png" 
                 alt="iphone showing weather app" 
-                className="w-full h-auto drop-shadow-2xl"
+                className="w-full h-auto"
               />
-              <div className="absolute top-[3%] left-[8%] right-[8%] bottom-[3%]">
+              <div className="absolute top-[1%] left-[8%] right-[5%] bottom-[4%] ">
                 <img 
-                  className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg" 
+                  className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg overflow-visible" 
                   src="/src/assets/hero-img-1.png" 
                   alt="weather forecast interface" 
                 />
@@ -88,9 +88,9 @@ export const Home = () => {
                 alt="iphone showing weather details" 
                 className="w-full h-auto drop-shadow-2xl"
               />
-              <div className="absolute top-[3%] left-[8%] right-[8%] bottom-[3%]">
+              <div className="absolute top-[1%] left-[5%] right-[8%] bottom-[4%]">
                 <img 
-                  className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg" 
+                  className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg overflow-visible" 
                   src="/src/assets/hero-img-2.png" 
                   alt="weather data display" 
                 />
