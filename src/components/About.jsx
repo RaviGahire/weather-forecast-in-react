@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Cloud, Users, Target, Award, MapPin, Mail, Phone, Zap, Shield, Heart, TrendingUp, Globe } from 'lucide-react';
+import {Footer} from './Footer'
 
 export  function About() {
   const [activeTab, setActiveTab] = useState('mission');
@@ -78,37 +79,36 @@ export  function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
+    <>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-white">
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)'
-        }}></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-blue-400 via-blue-600 to-blue-800"></div>
+        <div className="absolute inset-0" ></div>
         
         <div className="relative max-w-7xl mx-auto px-6 py-24">
           <div className="text-center animate-fadeIn">
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-500/20">
-              <Cloud className="w-5 h-5 text-blue-400" />
-              <span className="text-blue-400 text-sm font-medium">About WeatherPro</span>
+            <div className="inline-flex items-center text-zinc-50 gap-2 bg-zinc-100/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-100/20">
+              <Cloud className="w-5 h-5 text-zinc-50" />
+              <span className="text-sm font-medium">About WeatherPro</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-7xl font-bold mb-6 text-zinc-50">
               We Make Weather
               <br />Simple & Accurate
             </h1>
             
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               Empowering millions of people worldwide with precise weather forecasts and real-time alerts. 
               Your trusted companion for every weather condition.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold hover:scale-105 transition-transform shadow-lg shadow-blue-500/30">
+              <button className="px-3 py-2 md:px-8 md:py-4 text-sm md:text-lg bg-gray-900 cursor-pointer rounded-xl font-semibold hover:scale-105 transition-transform shadow-lg shadow-blue-500/30">
                 Join Our Team
               </button>
-              <button className="px-8 py-4 bg-[#1e293b] rounded-xl font-semibold hover:bg-[#2d3b50] transition-colors border border-gray-700">
+              <button className="px-3 py-2 md:px-8 md:py-4 text-sm md:text-lg cursor-pointer  bg-[#1e293b] rounded-xl font-semibold hover:bg-[#2d3b50] transition-colors border border-gray-700">
                 Contact Us
               </button>
             </div>
@@ -117,8 +117,8 @@ export  function About() {
       </div>
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto px-4 py-8 md:px-6 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
           {stats.map((stat, index) => (
             <div 
               key={index}
@@ -130,7 +130,7 @@ export  function About() {
               <div className={`inline-flex p-4 bg-gradient-to-br ${stat.color} rounded-xl mb-4 shadow-lg`}>
                 {stat.icon}
               </div>
-              <div className="text-4xl font-bold mb-2">{stat.value}</div>
+              <div className="text-2xl md:text-4xl font-bold mb-2">{stat.value}</div>
               <div className="text-gray-400 text-sm">{stat.label}</div>
             </div>
           ))}
@@ -138,8 +138,8 @@ export  function About() {
       </div>
 
       {/* Mission, Vision, Values Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="bg-[#1e293b] rounded-3xl p-8 border border-gray-700/50">
+      <div className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-16">
+        <div className="bg-[#1e293b] rounded-3xl p-3 md:p-8 border border-gray-700/50">
           <div className="flex gap-4 mb-8 overflow-x-auto pb-2">
             {['mission', 'vision', 'values'].map((tab) => (
               <button
@@ -158,11 +158,11 @@ export  function About() {
 
           {activeTab === 'mission' && (
             <div className="animate-fadeIn">
-              <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
+              <h2 className="text-lg md:text-3xl font-bold mb-4 flex items-center gap-3">
                 <Target className="w-8 h-8 text-blue-400" />
                 Our Mission
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-300 text-sm md:text-lg leading-relaxed">
                 To provide the most accurate, reliable, and accessible weather information to people around the world. 
                 We believe everyone deserves to know what's coming, whether it's planning a picnic or preparing for a storm. 
                 Our mission is to make weather forecasting simple, intuitive, and available to everyone, everywhere.
@@ -172,11 +172,11 @@ export  function About() {
 
           {activeTab === 'vision' && (
             <div className="animate-fadeIn">
-              <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
+              <h2 className="text-lg md:text-3xl font-bold mb-4 flex items-center gap-3">
                 <Globe className="w-8 h-8 text-purple-400" />
                 Our Vision
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-300 text-sm md:text-lg leading-relaxed">
                 To become the world's most trusted weather platform, leveraging cutting-edge AI and machine learning 
                 to predict weather patterns with unprecedented accuracy. We envision a future where weather-related 
                 disasters are minimized through early warnings and where every person has access to life-saving weather information.
@@ -186,7 +186,7 @@ export  function About() {
 
           {activeTab === 'values' && (
             <div className="animate-fadeIn">
-              <h2 className="text-3xl font-bold mb-6">Our Core Values</h2>
+              <h2 className="text-lg md:text-3xl font-bold mb-6">Our Core Values</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {values.map((value, index) => (
                   <div 
@@ -208,9 +208,9 @@ export  function About() {
 
       {/* Timeline Section */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <h2 className="text-4xl font-bold text-center mb-12">Our Journey</h2>
+        <h2 className="text-3xl md:text-4xl text-gray-800 font-bold text-center mb-12">Our Journey</h2>
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500"></div>
+          <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500"></div>
           
           {milestones.map((milestone, index) => (
             <div 
@@ -220,15 +220,15 @@ export  function About() {
                 animation: `slideUp 0.6s ease-out ${index * 0.2}s both`
               }}
             >
-              <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
-                <div className="bg-[#1e293b] rounded-xl p-6 border border-gray-700/50 hover:scale-105 transition-transform">
+              <div className={`w-1/1 md:w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
+                <div className="bg-[#1e293b] rounded-xl p-6 border border-gray-700/50 hover:scale-105 transition-transform mx-4">
                   <div className="text-3xl font-bold text-blue-400 mb-2">{milestone.year}</div>
                   <h3 className="text-xl font-bold mb-2">{milestone.event}</h3>
                   <p className="text-gray-400">{milestone.description}</p>
                 </div>
               </div>
               
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-[#0f172a] shadow-lg"></div>
+              <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-[#0f172a] shadow-lg"></div>
             </div>
           ))}
         </div>
@@ -237,8 +237,8 @@ export  function About() {
       {/* Team Section */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
-          <p className="text-gray-400 text-lg">The brilliant minds behind WeatherPro</p>
+          <h2 className="text-4xl font-bold mb-4 text-gray-800">Meet Our Team</h2>
+          <p className="text-lg text-gray-800">The brilliant minds behind WeatherPro</p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -250,10 +250,10 @@ export  function About() {
                 animation: `slideUp 0.6s ease-out ${index * 0.1}s both`
               }}
             >
-              <div className="h-48 bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform">
+              <div className="h-48 bg-gradient-to-bl from-blue-400 via-blue-600 to-blue-800 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform">
                 {member.image}
               </div>
-              <div className="p-6">
+              <div className="p-6 ">
                 <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                 <div className="text-blue-400 text-sm mb-3">{member.role}</div>
                 <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
@@ -273,7 +273,7 @@ export  function About() {
 
       {/* Contact CTA Section */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-bl from-blue-400 via-blue-600 to-blue-800 rounded-3xl p-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative z-10">
             <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
@@ -293,34 +293,10 @@ export  function About() {
           </div>
         </div>
       </div>
+      </div>
 
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
 
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out;
-        }
-      `}</style>
-    </div>
+      <Footer/>
+      </>
   );
 }
