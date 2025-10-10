@@ -12,7 +12,7 @@ export const Home = () => {
     // Simulate API loading
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 4000);
   }, []);
 
 
@@ -21,7 +21,9 @@ export const Home = () => {
       <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
-          <p className="text-white text-lg">Loading Weather...</p>
+          <p className="text-white text-lg">Currently under development</p>
+          <p className="text-white text-lg">Loading...</p>
+              
         </div>
       </div>
     );
