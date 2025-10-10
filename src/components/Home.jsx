@@ -68,14 +68,14 @@ export const Home = () => {
             <div className="relative z-10 w-[42vw] max-w-[160px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[220px] xl:max-w-[260px] animate-[float_3s_ease-in-out_infinite]">
               <div className="relative left-8">
                 <img
-                  src="/public/images/iphone-1.png"
+                  src="/images/iphone-1.png"
                   alt="iphone showing weather app"
                   className="w-full h-auto"
                 />
                 <div className="absolute top-[1%] left-[8%] right-[5%] bottom-[4%] ">
                   <img
                     className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg overflow-visible"
-                    src="/src/assets/hero-img-1.png"
+                    src="images/hero-img-1.png"
                     alt="weather forecast interface"
                   />
                 </div>
@@ -86,14 +86,14 @@ export const Home = () => {
             <div className="relative z-0 w-[42vw] max-w-[160px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[220px] xl:max-w-[260px] animate-[float_3s_ease-in-out_infinite_0.5s]">
               <div className="relative right-8">
                 <img
-                  src="/public/images/iphone-2.png"
+                  src="/images/iphone-2.png"
                   alt="iphone showing weather details"
                   className="w-full h-auto drop-shadow-2xl"
                 />
                 <div className="absolute top-[1%] left-[5%] right-[8%] bottom-[4%]">
                   <img
                     className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg overflow-visible"
-                    src="/public/images/hero-img-2.png"
+                    src="/images/hero-img-2.png"
                     alt="weather data display"
                   />
                 </div>
