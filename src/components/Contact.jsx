@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Footer } from './Footer';
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare, User, Building, CheckCircle } from 'lucide-react';
 
 export  function Contact() {
@@ -94,27 +95,28 @@ export  function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
+    <>
+    <div className="min-h-screen  bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-white">
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div className="absolute inset-0  bg-gradient-to-bl from-blue-400 via-blue-600 to-blue-800"></div>
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)'
         }}></div>
         
-        <div className="relative max-w-7xl mx-auto px-6 py-16 text-center">
+        <div className="relative max-w-7xl mx-auto px-3 py-8 md:px-6 md:py-16 text-center">
           <div className="animate-fadeIn">
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-500/20">
-              <MessageSquare className="w-5 h-5 text-blue-400" />
-              <span className="text-blue-400 text-sm font-medium">Get In Touch</span>
+            <div className="inline-flex items-center gap-2 bg-gray-800/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-500/20">
+              <MessageSquare className="w-5 h-5" />
+              <span className=" text-sm font-medium">Get In Touch</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-6xl font-bold mb-6 ">
               Let's Start a Conversation
             </h1>
             
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Have questions about our weather services? We're here to help. 
               Reach out to us and we'll respond as soon as possible.
             </p>
@@ -123,7 +125,7 @@ export  function Contact() {
       </div>
 
       {/* Contact Cards */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-3 py-6 md:px-6 md:py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {contactInfo.map((item, index) => (
             <a
@@ -149,18 +151,18 @@ export  function Contact() {
           
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-[#1e293b] rounded-3xl p-8 border border-gray-700/50">
-              <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                <Send className="w-8 h-8 text-blue-400" />
+            <div className="bg-[#1e293b] rounded-3xl p-3 md:p-8 border border-gray-700/50">
+              <h2 className="text-lg md:text-3xl font-bold mb-6 flex items-center gap-3">
+                <Send className="md:w-8 md:h-8 text-blue-400" />
                 Send Us a Message
               </h2>
 
               {submitted ? (
                 <div className="text-center py-16 animate-fadeIn">
                   <div className="inline-flex p-6 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full mb-6 animate-bounce">
-                    <CheckCircle className="w-16 h-16" />
+                    <CheckCircle className="w-8 h-8 md:w-16 md:h-16" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Sent Successfully!</h3>
+                  <h3 className=" text-lg md:text-2xl font-bold mb-2">Message Sent Successfully!</h3>
                   <p className="text-gray-400">We'll get back to you within 24 hours.</p>
                 </div>
               ) : (
@@ -330,7 +332,7 @@ export  function Contact() {
       </div>
 
       {/* Map Section (Placeholder) */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-3 py-6 md:px-6 md:py-12">
         <div className="bg-[#1e293b] rounded-3xl overflow-hidden border border-gray-700/50 h-96 flex items-center justify-center">
           <div className="text-center">
             <MapPin className="w-16 h-16 mx-auto mb-4 text-blue-400" />
@@ -340,33 +342,9 @@ export  function Contact() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out;
-        }
-      `}</style>
+    
     </div>
+    <Footer/>
+    </>
   );
 }
