@@ -1,15 +1,21 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
 
 export const WeatherDashboard = () => {
-
     // City and 24hr predication
+    const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerView = 6;
     const [cityIndex, setCityIndex] = useState(0);
+    useEffect(() => {
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
 
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
@@ -78,10 +84,21 @@ export const WeatherDashboard = () => {
         }
     };
 
+    //Loading...
+    if (loading) {
+        return (
+            <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
+                    <p className="text-white text-lg">Loading current Weather...</p>
+                </div>
+            </div>
+        );
+    }
     return (
         <>
-            <main aria-label="weather-dashboard" className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-6 ">
-                <div className="max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border">
+            <main aria-label="weather-dashboard" className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 ">
+                <div className="max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
                     <p className="text-md md:text-2xl font-semibold tracking-wide">
                         Pune: current weather conditions
                     </p>
@@ -90,7 +107,7 @@ export const WeatherDashboard = () => {
                     </p>
                 </div>
                 {/* Weather Map */}
-                <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+                <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-700 animate-fadeIn">
                     <div className="bg-gray-900 p-4 tracking-wide">
                         <h2 className="text-xl font-semibold text-neutral-100">Your live weather map</h2>
                         <p className="text-sm text-gray-400">Interactive weather conditions powered by Windy.com</p>
@@ -104,7 +121,7 @@ export const WeatherDashboard = () => {
                 </div>
 
                 {/* =====================================First grid============================  */}
-                <div className="text-white p-5 ">
+                <div className="text-white py-3 md:p-5 animate-fadeIn ">
                     <div className="max-w-7xl mx-auto ">
                         {/* Top Grid */}
                         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-5 mb-5">
@@ -174,7 +191,7 @@ export const WeatherDashboard = () => {
                                 </h3>
                                 <div className="text-[32px] font-semibold mb-5">4kt <span className="text-gray-400">W</span></div>
                                 <div className="mx-auto flex align-center justify-center">
-                                    <WindCompass windSpeed={8} windDirection={10} />
+                                    <WindCompass windSpeed={1.8} windDirection={22} />
                                 </div>
                                 <div className="text-center text-[13px] text-gray-400 mt-4">
                                     Very gentle wind.
@@ -207,7 +224,7 @@ export const WeatherDashboard = () => {
                 </div>
 
                 {/* =====================================Second grid============================  */}
-                <div className="text-white p-6">
+                <div className="text-white py-3 md:p-5">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr_280px] gap-4">
 
                         {/* Left Column - Weekly Forecast */}
@@ -231,44 +248,44 @@ export const WeatherDashboard = () => {
                         </div>
 
                         {/* Middle Column - Weather Details Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-auto">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 h-auto">
                             {/* Feels Like */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex  md:items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>🌡️</span>
                                     <span>Feels like</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">27°</div>
+                                <div className=" text-lg md:text-3xl font-semibold mb-3">27°</div>
                                 <div className="text-sm text-gray-400">Feels warmer than actual temperature.</div>
                             </div>
 
                             {/* Pressure */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400  mb-1 md:mb-3">
                                     <span>📊</span>
                                     <span>Pressure</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">951 hPa</div>
+                                <div className=" text-lg md:text-3xl font-semibold mb-3">951 hPa</div>
                                 <div className="text-sm text-gray-400">Expect unstable weather conditions.</div>
                             </div>
 
                             {/* Humidity */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400  mb-1 md:mb-3">
                                     <span>💧</span>
                                     <span>Humidity</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">84%</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">84%</div>
                                 <div className="text-sm text-gray-400">High humidity.</div>
                             </div>
 
                             {/* UV */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>☀️</span>
                                     <span>UV</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">7 - High</div>
+                                <div className="tex-lg md:text-3xl font-semibold mb-3">7 - High</div>
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className="flex-1 h-2 bg-[#0d1b2a] rounded-full overflow-hidden">
                                         <div className="h-full w-[70%] bg-gradient-to-r from-green-400 via-yellow-400  to-red-400 rounded-full relative">
@@ -280,52 +297,52 @@ export const WeatherDashboard = () => {
                             </div>
 
                             {/* Gusts */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>💨</span>
                                     <span>Gusts</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">18kt</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">18kt</div>
                                 <div className="text-sm text-gray-400">Max speed of wind gusts today.</div>
                             </div>
 
                             {/* Cloud Cover */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>☁️</span>
                                     <span>Cloud Cover</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">100%</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">100%</div>
                                 <div className="text-sm text-gray-400">Overcast, expect cloudy conditions.</div>
                             </div>
 
                             {/* Daylight */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>🌅</span>
                                     <span>Daylight</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">11h 53m</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">11h 53m</div>
                                 <div className="text-sm text-gray-400">Balanced day and night.</div>
                             </div>
 
                             {/* Rain */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>🌧️</span>
                                     <span>Rain</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">0.0mm</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">0.0mm</div>
                                 <div className="text-sm text-gray-400">No rain, dry conditions expected.</div>
                             </div>
 
                             {/* Snowfall */}
-                            <div className="bg-gray-900 rounded-xl p-5">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+                            <div className="bg-gray-900 rounded-xl p-3 md:p-5">
+                                <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
                                     <span>❄️</span>
                                     <span>Snowfall</span>
                                 </div>
-                                <div className="text-3xl font-semibold mb-3">0.0mm</div>
+                                <div className="text-lg md:text-3xl font-semibold mb-3">0.0mm</div>
                                 <div className="text-sm text-gray-400">No snowfall expected.</div>
                             </div>
                         </div>
