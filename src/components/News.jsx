@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import{Footer} from './Footer'
 import { Cloud, Wind, Droplets, Sun, AlertTriangle, TrendingUp, Calendar, Clock } from 'lucide-react';
 
 export  function WeatherNews() {
@@ -118,7 +119,8 @@ export  function WeatherNews() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white p-6">
+    <>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-white p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8 animate-fadeIn">
@@ -127,10 +129,10 @@ export  function WeatherNews() {
               <AlertTriangle className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold text-gray-900">
                 Weather News
               </h1>
-              <p className="text-gray-400 text-sm">Stay updated with the latest weather events worldwide</p>
+              <p className="text-gray-700 text-sm">Stay updated with the latest weather events worldwide</p>
             </div>
           </div>
         </div>
@@ -250,34 +252,8 @@ export  function WeatherNews() {
           </div>
         )}
       </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out;
-        }
-      `}</style>
     </div>
+    <Footer/>
+    </>
   );
 }
