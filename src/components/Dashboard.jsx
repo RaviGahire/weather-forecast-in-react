@@ -3,19 +3,30 @@ import React, { useEffect, useState } from "react";
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
+import  LocationFinder  from "../API/UserLoaction";
+import { LocationContext } from "../API/UserLoaction";
+import { useContext } from "react";
 
 export const WeatherDashboard = () => {
+
+const userLoaction = useContext(LocationContext)
+console.log(userLoaction)
+
+   
     // City and 24hr predication
     const [loading, setLoading] = useState(true);
+    const [loaction ,setLoaction] = useState ()
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerView = 6;
     const [cityIndex, setCityIndex] = useState(0);
     useEffect(() => {
 
         setTimeout(() => {
+            setLoaction(true)
             setLoading(false);
         }, 1000);
     }, []);
+
 
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
@@ -84,25 +95,6 @@ export const WeatherDashboard = () => {
         }
     };
 
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(async function(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    
-    // Reverse geocoding using Nominatim
-    const response = await fetch(
-      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
-    );
-    const data = await response.json();
-    
-    const city = data.address.city || data.address.town || data.address.village;
-    const state = data.address.state;
-    const country = data.address.country;
-    
-    console.log(`City: ${city}, State: ${state}, Country: ${country}`);
-  });
-}
-
 
 
 
@@ -122,13 +114,17 @@ if ("geolocation" in navigator) {
     return (
         <>
             <main aria-label="weather-dashboard" className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 ">
-                <div className="max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
-                    <p className="text-md md:text-2xl font-semibold tracking-wide">
+             
+                <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
+                  <div>
+                      <p className="text-md md:text-2xl font-semibold tracking-wide">
                         Pune: current weather conditions
                     </p>
                     <p className="mt-1 text-sm text-gray-400">
                         Stay updated with the latest weather information to plan your day effectively.
                     </p>
+                  </div>
+                     <LocationFinder/>
                 </div>
                 {/* Weather Map */}
                 <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-700 animate-fadeIn">
@@ -142,7 +138,9 @@ if ("geolocation" in navigator) {
                         frameBorder="0"
                         allowFullScreen
                     ></iframe>
+             
                 </div>
+           
 
                 {/* =====================================First grid============================  */}
                 <div className="text-white py-3 md:p-5 animate-fadeIn ">

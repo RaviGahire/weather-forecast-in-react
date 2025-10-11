@@ -1,25 +1,32 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
+import { createContext } from 'react';
+import { WeatherDashboard } from '../components/Dashboard';
+const LocationContext = createContext();
+export default function LocationFinder() {
 
-export const UserLoaction = () => {
-    const [load, setLoad] = useState(false)
+
+
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [locationData, setLocationData] = useState(null);
 
+    const getLocation = async () => {
+        setLoading(true);
+        setError('');
+        setLocationData(null);
 
-    const getLoaction = async () => {
-        // Check browser supported to geolaction
-
-        if (!('geolocation' in navigator)) {
-
+        // Check if geolocation is supported
+        if (!("geolocation" in navigator)) {
             setError("Geolocation is not supported by your browser");
-            setLoad(false)
-
-            return
+            setLoading(false);
+            return;
         }
 
         let watchId = null;
         let timeoutId = null;
         let hasReceivedPosition = false;
 
+        // Set a manual timeout
         timeoutId = setTimeout(() => {
             if (watchId !== null) {
                 navigator.geolocation.clearWatch(watchId);
@@ -30,17 +37,21 @@ export const UserLoaction = () => {
             }
         }, 20000);
 
+        // Function to get fresh location with watchPosition for better accuracy
         watchId = navigator.geolocation.watchPosition(
             async (position) => {
-                const positionTime = Date.now() - position.timestap;
+                // Check if position is fresh (not cached)
+                const positionAge = Date.now() - position.timestamp;
 
-                if (positionTime > 5000) {
-                    console.log(`Position too old (${positionTime}) waiting for fresh loaction`)
-                    return
+                // Only accept positions that are very recent (less than 3 seconds old)
+                if (positionAge > 5000) {
+                    console.log(`Position too old (${positionAge}ms), waiting for fresh GPS fix...`);
+                    return; // Keep watching for a fresher position
                 }
 
-                hasReceivedPosition = true
+                hasReceivedPosition = true;
 
+                // Clear the watch and timeout
                 if (watchId !== null) {
                     navigator.geolocation.clearWatch(watchId);
                 }
@@ -53,12 +64,17 @@ export const UserLoaction = () => {
                 const accuracy = position.coords.accuracy;
 
                 try {
-                    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+                    // Reverse geocoding using BigDataCloud API
+                    const response = await fetch(
+                        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
+                    );
 
                     if (!response.ok) {
                         throw new Error('Failed to fetch location data');
                     }
+
                     const data = await response.json();
+
                     setLocationData({
                         city: data.city || data.locality || 'Not available',
                         state: data.principalSubdivision || 'Not available',
@@ -71,7 +87,7 @@ export const UserLoaction = () => {
                 } catch (err) {
                     setError('Failed to get city information: ' + err.message);
                 } finally {
-                    setLoad(false);
+                    setLoading(false);
                 }
             },
             (err) => {
@@ -101,104 +117,49 @@ export const UserLoaction = () => {
                 }
 
                 setError(errorMessage);
-                setLoad(false);
+                setLoading(false);
             },
-
             {
                 enableHighAccuracy: true, // Use GPS if available
                 timeout: 20000,           // Wait max 20 seconds for better GPS lock
                 maximumAge: 0             // Don't use cached position
             }
+        );
+    };
+ 
 
+    return (
+        <>
+            <div>  <button
+                onClick={getLocation}
+                disabled={loading}
+                className="w-50 bg-gradient-to-r from-purple-500 to-purple-700 text-white  rounded-xl font-semibold text-lg hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 cursor-pointer"
+            >
+                {loading ? (
+                    <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Getting Location...
+                    </>
+                ) : (
+                    'Get Location'
+                )}
+            </button>
 
-        )
-
-
-
-        setError(errorMessage);
-        setLoad(false);
-
-
-
-
-        return (
-            <>
-                <div className="min-h-screen bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center p-5">
-                    <div className="bg-white rounded-3xl shadow-2xl p-10 max-w-md w-full">
-                        <div className="text-center mb-8">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center text-white text-3xl">
-                                📍
-                            </div>
-                            <h1 className="text-3xl font-bold text-gray-800">Find My Location</h1>
-                        </div>
-
-                        <button
-                            onClick={getLocation}
-                            disabled={load}
-                            className="w-full bg-gradient-to-r from-purple-500 to-purple-700 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
-                        >
-                            {load ? (
-                                <>
-                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                    Getting Location...
-                                </>
-                            ) : (
-                                'Get My Location & City'
-                            )}
-                        </button>
-
-                        {error && (
-                            <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
-                                <p className="text-red-700">{error}</p>
-                            </div>
-                        )}
-
-                        {locationData && (
-                            <div className="mt-8 space-y-4">
-                                <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-purple-500">
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">City</p>
-                                    <p className="text-xl font-semibold text-gray-800">{locationData.city}</p>
-                                </div>
-
-                                <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-purple-500">
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">State/Region</p>
-                                    <p className="text-xl font-semibold text-gray-800">{locationData.state}</p>
-                                </div>
-
-                                <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-purple-500">
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Country</p>
-                                    <p className="text-xl font-semibold text-gray-800">{locationData.country}</p>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-purple-500">
-                                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Latitude</p>
-                                        <p className="text-lg font-semibold text-gray-800">{locationData.latitude}</p>
-                                    </div>
-
-                                    <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-purple-500">
-                                        <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Longitude</p>
-                                        <p className="text-lg font-semibold text-gray-800">{locationData.longitude}</p>
-                                    </div>
-                                </div>
-
-                                <div className="p-4 bg-gray-50 rounded-xl border-l-4 border-green-500">
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Accuracy</p>
-                                    <p className="text-lg font-semibold text-gray-800">{locationData.accuracy}</p>
-                                </div>
-
-                                <div className="p-4 bg-blue-50 rounded-xl border-l-4 border-blue-500">
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Last Updated</p>
-                                    <p className="text-lg font-semibold text-gray-800">{locationData.timestamp}</p>
-                                </div>
-                            </div>
-                        )}
+                {error && (
+                    <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
+                        <p className="text-red-700">{error}</p>
                     </div>
-                </div>
+                )}</div>
 
+            {
+                 locationData ? <LocationContext.Provider value={locationData}></LocationContext.Provider >: 'Wait'
+               
 
-            </>
-        )
-    }
+            }
 
+        </>
+
+    );
 }
+
+export { LocationContext }
