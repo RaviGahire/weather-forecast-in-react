@@ -30,7 +30,7 @@ export const Header = () => {
             id: 2,
             path: "/dashboard",
             element: <WeatherDashboard />,
-            title: "Forecaster",
+            title: "Weather",
         },
         { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },
         { id: 4, path: "/about", element: <About />, title: "About" },

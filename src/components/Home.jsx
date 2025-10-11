@@ -5,12 +5,16 @@ import { AccordionIcons } from './FaqSection'
 import { Footer } from './Footer'
 import { TextRollCustomVariants } from './TextAnimation'
 
+
 export const Home = () => {
   const [loading, setLoading] = useState(true);
+  const [location,setLocation] = useState(false)
+
 
   useEffect(() => {
     // Simulate API loading
     setTimeout(() => {
+ 
       setLoading(false);
     }, 4000);
   }, []);

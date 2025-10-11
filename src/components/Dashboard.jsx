@@ -84,6 +84,30 @@ export const WeatherDashboard = () => {
         }
     };
 
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(async function(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    
+    // Reverse geocoding using Nominatim
+    const response = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
+    );
+    const data = await response.json();
+    
+    const city = data.address.city || data.address.town || data.address.village;
+    const state = data.address.state;
+    const country = data.address.country;
+    
+    console.log(`City: ${city}, State: ${state}, Country: ${country}`);
+  });
+}
+
+
+
+
+
+
     //Loading...
     if (loading) {
         return (
