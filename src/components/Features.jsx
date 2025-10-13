@@ -21,14 +21,14 @@ export const Features = () => {
                 <div className="flex-1 flex md:justify-center ">
                     <div className="relative overflow-hidden">
                         <img
-                            src="/src/assets/iphone-3.png"
+                            src="/images/iphone-3.png"
                             alt="iphone showing weather app"
                             className="w-full h-auto"
                         />
                         <div className="absolute top-[8%] left-[4%] right-[4%] bottom-[4%] ">
                             <img
                                 className="w-full h-full object-cover rounded-sm sm:rounded md:rounded-lg overflow-visible"
-                                src="/src/assets/iPhone-img-3.png"
+                                src="/images/iPhone-img-3.png"
                                 alt="weather forecast interface"
                             />
                         </div>
