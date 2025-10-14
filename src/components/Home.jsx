@@ -105,39 +105,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-
-        <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-        
-        @media (min-width: 640px) {
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-16px);
-            }
-          }
-        }
-        
-        @media (min-width: 1024px) {
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-20px);
-            }
-          }
-        }
-      `}</style>
+     
       </section>
       <Features />
       <div aria-label='customer review' className="max-w-7xl mx-auto mb-20  ">

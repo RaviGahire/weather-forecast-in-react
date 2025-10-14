@@ -1,29 +1,34 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
+import DataTransfer from "../DataTransfer";
 
 
+
+// console.log(DataTransfer)
 
 
 export const WeatherDashboard = () => {
 
-    // City and 24hr predication
     const [loading, setLoading] = useState(true);
-    const [loaction, setLoaction] = useState()
+    
     const [currentIndex, setCurrentIndex] = useState(0);
-    const itemsPerView = 6;
     const [cityIndex, setCityIndex] = useState(0);
+    const itemsPerView = 6;
+    const context = useContext(DataTransfer);
+
+   
+
+console.log('from Dashboard',context)
+
+    
+   
+
+
 
   
-    useEffect(() => {
-
-        setTimeout(() => {
-            setLoaction(true)
-            setLoading(false);
-        }, 1000);
-    }, []);
 
 
     // Directions based on API Data
@@ -93,21 +98,33 @@ export const WeatherDashboard = () => {
         }
     };
 
+  useEffect(() => {
+
+        setTimeout(() => {
+
+        setLoading(false)
+          
+        }, 2000);
+        
+    }, []);
+
     //Loading...
     if (loading) {
+
         return (
             <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
                 <div className="text-center">
                     <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
                     <p className="text-white text-lg">Loading current Weather...</p>
                 </div>
+
             </div>
+
         );
     }
     return (
         <>
             <main aria-label="weather-dashboard" className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 ">
-
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
                     <div>
                         <p className="text-md md:text-2xl font-semibold tracking-wide">
@@ -117,7 +134,6 @@ export const WeatherDashboard = () => {
                             Stay updated with the latest weather information to plan your day effectively.
                         </p>
                     </div>
-                    {/* <LocationFinder /> */}
                 </div>
                 {/* Weather Map */}
                 <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-700 animate-fadeIn">

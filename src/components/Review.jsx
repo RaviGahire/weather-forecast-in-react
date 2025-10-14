@@ -85,9 +85,9 @@ export function CarouselSpacing() {
       <Carousel>
         <CarouselContent className='-ml-4'>
           {
-            customerReview.map((review) => {
+            customerReview.map((review , index) => {
            return(
-               <CarouselItem className='basis-1/1 md:basis-1/2 lg:basis-1/3 pl-4'>
+               <CarouselItem key={index} className='basis-1/1 md:basis-1/2 lg:basis-1/3 pl-4'>
                 <div className='flex items-center justify-center rounded-xl overflow-hidden '>
                   {/* review card */}
                   <div className="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 border-l-4 border-teal-500 p-6 w-screen h-full ">
