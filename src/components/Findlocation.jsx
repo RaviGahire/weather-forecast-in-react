@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { User_Location_Data } from "../DataContexts"
 import { WeatherDashboard } from "./Dashboard"
+import { p } from 'motion/react-client';
 
 export function LocationFinder() {
   const [error, setError] = useState('');
@@ -79,10 +80,10 @@ export function LocationFinder() {
 
   return (
 
-    <User_Location_Data.Provider value={{ locationData }}>
+    <User_Location_Data.Provider value={ locationData }>
       {
-        locationData ? (<WeatherDashboard />) : (<div className="text-center text-gray-500 mt-10">
-          {error || 'Detecting your location...'}
+        locationData ? (<WeatherDashboard />) : (<div className="flex items-center justify-center h-screen bg-gray-800 text-center  ">
+          {error ? (<p className='text-xl md:text-2xl text-gray-200 font-semibold  tracking-wide'>Unable to retrieve your location. Please allow location access.</p>) : (<p className='text-2xl text-gray-200 font-light tracking-wide'>Please wait detecting your location...</p>) }
         </div>)
       }
     </User_Location_Data.Provider>
