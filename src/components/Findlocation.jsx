@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
-import DataTransfer from '../DataTransfer';
-import { WeatherDashboard } from './Dashboard';
-import { p } from 'motion/react-client';
-
+import { useState, useEffect, useCallback } from 'react';
+import { User_Location_Data } from "../DataContexts"
+import { WeatherDashboard } from "./Dashboard"
 
 export function LocationFinder() {
   const [error, setError] = useState('');
   const [locationData, setLocationData] = useState(null);
 
 
-
-  const getLocation = async () => {
+  const getLocation = useCallback(async () => {
 
     setError('');
     // setLocationData(null);
@@ -31,9 +28,9 @@ export function LocationFinder() {
 
         try {
           // Reverse geocoding using BigDataCloud API
-          fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
-            .then((response) => response.json())
-            .then((locationData) => setLocationData(locationData))
+          const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+          const data = await response.json();
+          setLocationData(data);
 
 
 
@@ -70,21 +67,24 @@ export function LocationFinder() {
         maximumAge: 0
       }
     );
-  };
+  }, [])
+
+
 
   useEffect(() => {
     getLocation()
-  }, [])
+  }, [getLocation])
 
   console.log('From Location finder', locationData)
 
   return (
-    <DataTransfer.Provider value={{ locationData, error }}>
+
+    <User_Location_Data.Provider value={{ locationData }}>
       {
         locationData ? (<WeatherDashboard />) : (<div className="text-center text-gray-500 mt-10">
           {error || 'Detecting your location...'}
         </div>)
       }
-    </DataTransfer.Provider>
+    </User_Location_Data.Provider>
   )
 }
