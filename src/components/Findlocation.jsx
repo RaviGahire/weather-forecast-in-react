@@ -83,7 +83,7 @@ export function LocationFinder() {
     <User_Location_Data.Provider value={ locationData }>
       {
         locationData ? (<WeatherDashboard />) : (<div className="flex items-center justify-center h-screen bg-gray-800 text-center  ">
-          {error ? (<p className='text-xl md:text-2xl text-gray-200 font-semibold  tracking-wide'>Unable to retrieve your location. Please allow location access.</p>) : (<p className='text-2xl text-gray-200 font-light tracking-wide'>Please wait detecting your location...</p>) }
+          {error ? (<p className='text-xl md:text-2xl text-gray-200 font-semibold  tracking-wide'>Unable to retrieve your location. Please allow location access.</p>) : (<p className='text-2xl text-gray-200 font-semibold tracking-wide'>Please wait detecting your location...</p>) }
         </div>)
       }
     </User_Location_Data.Provider>

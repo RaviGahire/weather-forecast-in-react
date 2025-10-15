@@ -3,32 +3,21 @@ import React, { useEffect, useState, useContext } from "react";
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
-import DataTransfer from "../DataTransfer";
-
-
-
-// console.log(DataTransfer)
+import { User_Location_Data } from "../DataContexts"
 
 
 export const WeatherDashboard = () => {
 
     const [loading, setLoading] = useState(true);
-    
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cityIndex, setCityIndex] = useState(0);
     const itemsPerView = 6;
-    const context = useContext(DataTransfer);
-
-   
-
-console.log('from Dashboard',context)
-
-    
-   
+    const locationData = useContext(User_Location_Data);
+    console.log('Full locationData in WeatherDashboard:', locationData);
+    //   console.log('City:', locationData?.city);
+    //   console.log('Locality:', locationData?.locality);
 
 
-
-  
 
 
     // Directions based on API Data
@@ -98,14 +87,14 @@ console.log('from Dashboard',context)
         }
     };
 
-  useEffect(() => {
+    useEffect(() => {
 
         setTimeout(() => {
 
-        setLoading(false)
-          
+            setLoading(false)
+
         }, 2000);
-        
+
     }, []);
 
     //Loading...
@@ -128,7 +117,7 @@ console.log('from Dashboard',context)
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
                     <div>
                         <p className="text-md md:text-2xl font-semibold tracking-wide">
-                            Pune: current weather conditions
+                            <span className="text-yellow-400">{locationData?.city}</span>: current weather conditions
                         </p>
                         <p className="mt-1 text-sm text-gray-400">
                             Stay updated with the latest weather information to plan your day effectively.
@@ -159,13 +148,13 @@ console.log('from Dashboard',context)
                             {/* Current Weather Card */}
                             <div className="bg-gray-900 rounded-xl p-6">
                                 <h3 className="text-sm font-normal text-gray-400 mb-2">
-                                    Current Weather Conditions in Pune
+                                    Current Weather Conditions in {locationData?.localityInfo?.administrative?.[2]?.name || 'District not found'}
                                 </h3>
 
                                 <div className="flex justify-between  items-center mb-20">
                                     <div>
-                                        <h1 className="text-[32px] font-semibold">Pune</h1>
-                                        <p className="text-sm text-gray-400">Maharashtra, India</p>
+                                        <h1 className="text-[32px] font-semibold">{locationData?.city}</h1>
+                                        <p className="text-sm text-gray-400">{locationData?.localityInfo?.administrative?.[1]?.name} {locationData?.localityInfo?.administrative?.[0]?.isoName}</p>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-6xl opacity-60">☁️</div>
@@ -194,7 +183,7 @@ console.log('from Dashboard',context)
                                         <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" fill="none" />
                                     </svg>
                                     <h3 className="text-base font-medium text-gray-400">
-                                        Hourly Pune Weather Forecast
+                                        Hourly {locationData?.city} Weather Forecast
                                     </h3>
                                 </div>
 
