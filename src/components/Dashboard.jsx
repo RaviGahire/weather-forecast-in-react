@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useContext } from "react";
-import { ChevronUp, ChevronDown } from 'lucide-react';
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
 import { User_Location_Data } from "../DataContexts"
@@ -177,17 +177,25 @@ export const WeatherDashboard = () => {
 
                             {/*24hr Hourly Forecast Card */}
                             <div className="bg-gray-900 rounded-xl p-6 overflow-hidden">
-                                <div className="flex items-center gap-2 mb-5">
-                                    <svg className="w-[18px] h-[18px] opacity-60" viewBox="0 0 24 24" fill="currentColor">
-                                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
-                                        <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" fill="none" />
-                                    </svg>
-                                    <h3 className="text-base font-medium text-gray-400">
-                                        Hourly {locationData?.city} Weather Forecast
-                                    </h3>
+                                <div className="flex items-center justify-between  gap-2 mb-5">
+                                    <div className="flex items-center gap-1">
+                                        <svg className="w-[18px] h-[18px] opacity-60" viewBox="0 0 24 24" fill="currentColor">
+                                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
+                                            <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" fill="none" />
+                                        </svg>
+
+                                        <h3 className="text-base font-medium text-gray-400">
+                                            Hourly {locationData?.city} Weather Forecast
+                                        </h3>
+
+                                    </div>
+                                    <div className=" flex gap-x-3 justify-between">
+                                        <ChevronLeft onClick={() => handleNext()} className="cursor-pointer" /> <ChevronRight onClick={() => handlePrev()} className="cursor-pointer" />
+                                    </div>
                                 </div>
 
-                                <div className="flex gap-3 overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab">
+                                <div className="flex gap-3  overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab">
+
                                     {hourlyData.map((hour, index) => (
                                         <div key={index} className="flex flex-col items-center gap-2 min-w-[70px] ">
                                             <div className="text-[13px] text-gray-400 font-medium ">{hour.time}</div>

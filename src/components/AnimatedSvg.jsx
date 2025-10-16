@@ -253,9 +253,13 @@ export const BellIcon = ({ isHovering }) => {
       strokeLinecap="round"
       strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-bell"
-      animate={isHovering ? {
-        rotate: [0, -15, 15, -15, 15, -10, 10, -5, 5, 0],
-      } : { rotate: 0 }}
+      animate={
+        isHovering
+          ? {
+              rotate: [0, -15, 15, -15, 15, -10, 10, -5, 5, 0],
+            }
+          : { rotate: 0 }
+      }
       transition={{ duration: 0.5 }}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -280,12 +284,111 @@ export const NotificationIcon = () => {
         Plan Your Outdoor Activities with Ease
       </h2>
       <p className="text-lg text-blue-900 mb-4 flex items-center gap-2">
-        <BellIcon isHovering={isHovering} /> 
-        <span>Get notified before rain stops. Plan your outdoor activities</span>
+        <BellIcon isHovering={isHovering} />
+        <span>
+          Get notified before rain stops. Plan your outdoor activities
+        </span>
       </p>
       <p className="text-base text-gray-700">
-        Our platform combines accuracy, community, and well-being, making weather updates more meaningful and interactive than ever before.
+        Our platform combines accuracy, community, and well-being, making
+        weather updates more meaningful and interactive than ever before.
       </p>
     </motion.div>
+  );
+};
+
+
+export const Clock = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Calculate angles for clock hands
+  const seconds = time.getSeconds();
+  const minutes = time.getMinutes();
+  const hours = time.getHours() % 12;
+
+  const secondAngle = (seconds * 6) - 90; // 6 degrees per second, -90 to start at top
+  const minuteAngle = (minutes * 6 + seconds * 0.1) - 90; // 6 degrees per minute
+  const hourAngle = (hours * 30 + minutes * 0.5) - 90; // 30 degrees per hour
+
+  return (
+    <svg
+      className="w-[18px] h-[18px] opacity-60"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      {/* Clock circle */}
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      
+      {/* Hour hand */}
+      <line
+        x1="12"
+        y1="12"
+        x2="12"
+        y2="7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        style={{
+          transformOrigin: '12px 12px',
+          transform: `rotate(${hourAngle}deg)`,
+          transition: 'transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)'
+        }}
+      />
+      
+      {/* Minute hand */}
+      <line
+        x1="12"
+        y1="12"
+        x2="12"
+        y2="5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        style={{
+          transformOrigin: '12px 12px',
+          transform: `rotate(${minuteAngle}deg)`,
+          transition: 'transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)'
+        }}
+      />
+      
+      {/* Second hand */}
+      <line
+        x1="12"
+        y1="12"
+        x2="12"
+        y2="4"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        style={{
+          transformOrigin: '12px 12px',
+          transform: `rotate(${secondAngle}deg)`,
+          transition: 'transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)'
+        }}
+      />
+      
+      {/* Center dot */}
+      <circle
+        cx="12"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+    </svg>
   );
 };
