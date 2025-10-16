@@ -15,11 +15,7 @@ export const WeatherDashboard = () => {
     const locationData = useContext(User_Location_Data);
     console.log('Full locationData in WeatherDashboard:', locationData);
     //   console.log('City:', locationData?.city);
-    //   console.log('Locality:', locationData?.locality);
-
-
-
-
+  
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
         const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
@@ -28,7 +24,7 @@ export const WeatherDashboard = () => {
         return directions[index];
     };
 
-    // Dummy data of 
+ 
     const hourlyData = [
         { time: '5 AM', icon: '☁️', temp: '22°' },
         { time: '6 AM', icon: '☁️', temp: '22°' },

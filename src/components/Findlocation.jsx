@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { User_Location_Data } from "../DataContexts"
 import { WeatherDashboard } from "./Dashboard"
-import { p } from 'motion/react-client';
+
 
 export function LocationFinder() {
   const [error, setError] = useState('');
