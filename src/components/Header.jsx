@@ -24,6 +24,7 @@ import { WeatherNews } from "./News";
 import AuthComponent from "../Auth/UserAuth";
 import { LocationFinder } from "./Findlocation";
 
+
 export const Header = () => {
 
   // Navigation tab

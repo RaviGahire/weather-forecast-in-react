@@ -3,6 +3,7 @@ import { User_Location_Data } from "../DataContexts"
 import { WeatherDashboard } from "./Dashboard"
 
 
+
 export function LocationFinder() {
   const [error, setError] = useState('');
   const [locationData, setLocationData] = useState(null);
@@ -76,7 +77,7 @@ export function LocationFinder() {
     getLocation()
   }, [getLocation])
 
-  console.log('From Location finder', locationData)
+  // console.log('From Location finder', locationData)
 
   return (
 
@@ -86,6 +87,8 @@ export function LocationFinder() {
           {error ? (<p className='text-xl md:text-2xl text-gray-200 font-semibold  tracking-wide'>Unable to retrieve your location. Please allow location access.</p>) : (<p className='text-2xl text-gray-200 font-semibold tracking-wide'>Please wait detecting your location...</p>) }
         </div>)
       }
+
+    
     </User_Location_Data.Provider>
   )
 }

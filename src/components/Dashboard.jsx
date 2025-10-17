@@ -6,6 +6,8 @@ import { WindCompass } from "./Compass";
 import { User_Location_Data } from "../DataContexts"
 
 
+console.log("WeatherDashboard rendered");
+
 export const WeatherDashboard = () => {
 
     const [loading, setLoading] = useState(true);
@@ -13,9 +15,51 @@ export const WeatherDashboard = () => {
     const [cityIndex, setCityIndex] = useState(0);
     const itemsPerView = 6;
     const locationData = useContext(User_Location_Data);
-    console.log('Full locationData in WeatherDashboard:', locationData);
-    //   console.log('City:', locationData?.city);
-  
+
+
+    //  Weather API 
+    const [weather, setWeather] = useState(null);
+    const location = useContext(User_Location_Data);
+    const lat = location?.latitude;
+    const lon = location?.longitude;
+
+    const getWeatherData = async (lat, lon) => {
+        if (!lat || !lon) return;
+
+        try {
+            const response = await fetch(
+                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto`
+            );
+            const weatherData = await response.json();
+
+            setWeather({
+                temperature: weatherData.current_weather.temperature,
+                windSpeed: weatherData.current_weather.windspeed,
+                windDirection: weatherData.current_weather.winddirection,
+                weatherCode: weatherData.current_weather.weathercode,
+                time: weatherData.current_weather.time,
+                minTemp: weatherData.daily.temperature_2m_min[0],
+                maxTemp: weatherData.daily.temperature_2m_max[0],
+                sunrise: weatherData.daily.sunrise[0],
+                sunset: weatherData.daily.sunset[0],
+                uvIndexMax: weatherData.daily.uv_index_max[0],
+                dailyWeatherCode: weatherData.daily.weather_code[0],
+                hourlyTemp: weatherData.hourly.temperature_2m,
+                hourlyApparentTemp: weatherData.hourly.apparent_temperature,
+                hourlyPrecipitation: weatherData.hourly.precipitation_probability,
+                hourlyUvIndex: weatherData.hourly.uv_index,
+                hourlyTime: weatherData.hourly.time,
+            });
+        } catch (error) {
+            console.error("Error fetching weather data:", error);
+        }
+    }
+
+console.log(weather)
+
+    // console.log('Full locationData in WeatherDashboard:', locationData);
+    //    console.log('Full WeatherData in WeatherDashboard', weatherData)
+
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
         const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
@@ -23,8 +67,8 @@ export const WeatherDashboard = () => {
         console.log(index)
         return directions[index];
     };
+const direction= getWindDirectionText(weather?.windDirection)
 
- 
     const hourlyData = [
         { time: '5 AM', icon: '☁️', temp: '22°' },
         { time: '6 AM', icon: '☁️', temp: '22°' },
@@ -84,12 +128,12 @@ export const WeatherDashboard = () => {
     };
 
     useEffect(() => {
-
+        getWeatherData(lat, lon);
         setTimeout(() => {
 
             setLoading(false)
 
-        }, 2000);
+        }, 3000);
 
     }, []);
 
@@ -107,6 +151,8 @@ export const WeatherDashboard = () => {
 
         );
     }
+
+
     return (
         <>
             <main aria-label="weather-dashboard" className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 ">
@@ -157,15 +203,14 @@ export const WeatherDashboard = () => {
                                         <div className="text-sm text-gray-400">Overcast</div>
                                     </div>
                                 </div>
-
                                 <div className="flex justify-between items-center">
-                                    <div className="text-[96px] font-light leading-none">24°</div>
+                                    <div className="text-[96px] font-light leading-none">{weather?.temperature}°</div>
                                     <div className="text-right">
                                         <div className="text-sm text-gray-400 my-1">
-                                            Low <span className="text-white ml-2">21°</span>
+                                            Low <span className="text-white ml-2">{Math.round(weather?.minTemp)}°</span>
                                         </div>
                                         <div className="text-sm text-gray-400 my-1">
-                                            High <span className="text-white ml-2">29°</span>
+                                            High <span className="text-white ml-2">{Math.round(weather?.maxTemp)}°</span>
                                         </div>
                                     </div>
                                 </div>
@@ -213,9 +258,9 @@ export const WeatherDashboard = () => {
                                     </svg>
                                     Wind
                                 </h3>
-                                <div className="text-[32px] font-semibold mb-5">4kt <span className="text-gray-400">W</span></div>
+                                <div className="text-[32px] font-semibold mb-5">{weather.windSpeed}kt <span className="text-gray-400">{direction}</span></div>
                                 <div className="mx-auto flex align-center justify-center">
-                                    <WindCompass windSpeed={1.8} windDirection={22} />
+                                    <WindCompass windSpeed={weather?.windSpeed} windDirection={weather?.windDirection} />
                                 </div>
                                 <div className="text-center text-[13px] text-gray-400 mt-4">
                                     Very gentle wind.
