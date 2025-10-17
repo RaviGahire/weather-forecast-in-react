@@ -15,6 +15,7 @@ export const WeatherDashboard = () => {
     const [cityIndex, setCityIndex] = useState(0);
     const itemsPerView = 6;
     const locationData = useContext(User_Location_Data);
+    const [weatherDesc, setWeatherDesc] = useState("");
 
 
     //  Weather API 
@@ -60,11 +61,48 @@ console.log(weather)
     // console.log('Full locationData in WeatherDashboard:', locationData);
     //    console.log('Full WeatherData in WeatherDashboard', weatherData)
 
+    //Weather Codes 
+const WeatherCodes = [
+  { code: 0, description: "Clear sky" },
+  { code: 1, description: "Mainly clear" },
+  { code: 2, description: "Partly cloudy" },
+  { code: 3, description: "Overcast" },
+  { code: 45, description: "Fog" },
+  { code: 48, description: "Depositing rime fog" },
+  { code: 51, description: "Light drizzle" },
+  { code: 53, description: "Moderate drizzle" },
+  { code: 55, description: "Dense drizzle" },
+  { code: 56, description: "Light freezing drizzle" },
+  { code: 57, description: "Dense freezing drizzle" },
+  { code: 61, description: "Slight rain" },
+  { code: 63, description: "Moderate rain" },
+  { code: 65, description: "Heavy rain" },
+  { code: 66, description: "Light freezing rain" },
+  { code: 67, description: "Heavy freezing rain" },
+  { code: 71, description: "Slight snow fall" },
+  { code: 73, description: "Moderate snow fall" },
+  { code: 75, description: "Heavy snow fall" },
+  { code: 77, description: "Snow grains" },
+  { code: 80, description: "Slight rain showers" },
+  { code: 81, description: "Moderate rain showers" },
+  { code: 82, description: "Violent rain showers" },
+  { code: 85, description: "Slight snow showers" },
+  { code: 86, description: "Heavy snow showers" },
+  { code: 95, description: "Thunderstorm: Slight or moderate" },
+  { code: 96, description: "Thunderstorm with slight hail" },
+  { code: 99, description: "Thunderstorm with heavy hail" },
+];
+
+console.log('weatherdisc', weatherDesc)
+
+
+
+
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
         const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
         const index = Math.round(deg / 22.5) % 16;
-        console.log(index)
+        // console.log(index)
         return directions[index];
     };
 const direction= getWindDirectionText(weather?.windDirection)
@@ -88,6 +126,7 @@ const direction= getWindDirectionText(weather?.windDirection)
         { time: '4 PM', icon: '🌧️', temp: '24°' },
         { time: '4 PM', icon: '🌧️', temp: '24°' },
     ];
+
     const weeklyForecast = [
         { day: 'Today', icon: '🌦️', low: '21°', high: '29°', range: 70 },
         { day: 'Mon', icon: '🌦️', low: '21°', high: '29°', range: 70 },
@@ -129,13 +168,27 @@ const direction= getWindDirectionText(weather?.windDirection)
 
     useEffect(() => {
         getWeatherData(lat, lon);
+
+if (weather?.dailyWeatherCode !== undefined) {
+      const matchedWeather = WeatherCodes.find(
+        (item) => item.code === weather.dailyWeatherCode
+      );
+
+      if (matchedWeather) {
+        setWeatherDesc(matchedWeather.description);
+      } else {
+        setWeatherDesc("Unknown weather condition");
+      }
+    }
+
+
         setTimeout(() => {
 
             setLoading(false)
 
         }, 3000);
 
-    }, []);
+    }, [weather?.dailyWeatherCode]);
 
     //Loading...
     if (loading) {
@@ -200,7 +253,7 @@ const direction= getWindDirectionText(weather?.windDirection)
                                     </div>
                                     <div className="text-center">
                                         <div className="text-6xl opacity-60">☁️</div>
-                                        <div className="text-sm text-gray-400">Overcast</div>
+                                        <div className="text-sm text-gray-400">{weatherDesc}</div>
                                     </div>
                                 </div>
                                 <div className="flex justify-between items-center">
