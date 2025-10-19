@@ -73,7 +73,9 @@ export const WeatherDashboard = () => {
         { code: 0, description: "Clear sky", icon: <ClearSky width="60" height="50" /> },
         { code: 1, description: "Mainly clear", icon: <ClearSky /> },
         { code: 2, description: "Partly cloudy", icon: <PartlyCloudy width="60" height="50" /> },
-        { code: 3, description: "Cloudy", icon: <Cloudy width="60" height="50" /> },
+        // { code: 3, description: "Cloudy", icon: <Cloudy width="60" height="50" /> },
+        { code: 3, description: "Cloudy", icon: <SnowShowers width="60" height="50" /> },
+
         { code: 45, description: "Fog", icon: <Fog width="60" height="50" /> },
         { code: 48, description: "Rime fog", icon: <Fog /> },
         { code: 51, description: "Light drizzle", icon: <Drizzle width="60" height="50" /> },
