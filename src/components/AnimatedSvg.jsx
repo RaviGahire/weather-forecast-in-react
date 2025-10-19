@@ -1,6 +1,7 @@
 import React from "react";
 
 import { motion } from "framer-motion";
+import { head } from "motion/react-client";
 
 //PersonalizedCard
 export const PersonalizedIcon = ({ isHovering }) => {
@@ -256,8 +257,8 @@ export const BellIcon = ({ isHovering }) => {
       animate={
         isHovering
           ? {
-            rotate: [0, -15, 15, -15, 15, -10, 10, -5, 5, 0],
-          }
+              rotate: [0, -15, 15, -15, 15, -10, 10, -5, 5, 0],
+            }
           : { rotate: 0 }
       }
       transition={{ duration: 0.5 }}
@@ -548,12 +549,13 @@ export const SnowIcon = () => {
 
 // ======================Weather icons =============================
 // Clear Sky - codes: 0, 1
-export const ClearSky = () => {
+export const ClearSky = (props) => {
+  const { width, height } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={60}
-      height={50}
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -570,15 +572,16 @@ export const ClearSky = () => {
 };
 
 // Partly Cloudy - codes: 2
-export const PartlyCloudy = () => {
+export const PartlyCloudy = (props) => {
+  const { width, height } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 16 16"
       id="Cloud-Sun-Duotone--Streamline-Phosphor"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>
         {
@@ -604,12 +607,14 @@ export const PartlyCloudy = () => {
 };
 
 // Overcast - code: 3
-export const Cloudy = () => {
+export const Cloudy = (props) => {
+  const { width, height } = props;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={60}
-      height={50}
+      width={width}
+      height={height}
       viewBox="0 0 60 50"
       fill="none"
       stroke="currentColor"
@@ -625,12 +630,13 @@ export const Cloudy = () => {
 };
 
 // Fog - codes: 45, 48
-export const Fog = () => {
+export const Fog = (props) => {
+  const { width, height } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={60}
-      height={50}
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -647,7 +653,8 @@ export const Fog = () => {
 };
 
 // Drizzle - codes: 51, 53, 55, 56, 57
-export const Drizzle = () => {
+export const Drizzle = (props) => {
+  const { width, height } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -655,8 +662,8 @@ export const Drizzle = () => {
       className="bi bi-cloud-drizzle"
       viewBox="0 0 16 16"
       id="Cloud-Drizzle--Streamline-Bootstrap"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>
         {"\n    Cloud Drizzle Streamline Icon: https://streamlinehq.com\n  "}
@@ -670,14 +677,15 @@ export const Drizzle = () => {
 };
 
 // Rain - codes: 61, 63, 65, 66, 67
-export const Rain = () => {
+export const Rain = (props) => {
+  const { width, height } = props;
   return (
     <svg
       id="Rain--Streamline-Carbon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>{"\n    Rain Streamline Icon: https://streamlinehq.com\n  "}</desc>
       <defs />
@@ -708,12 +716,13 @@ export const Rain = () => {
 };
 
 // Snow - codes: 71, 73, 75, 77
-export const Snow = () => {
+export const Snow = (props) => {
+  const { width, height } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={60}
-      height={50}
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -730,15 +739,16 @@ export const Snow = () => {
 };
 
 // Rain Showers - codes: 80, 81, 82
-export const RainShowers = () => {
+export const RainShowers = (props) => {
+  const { width, height } = props;
   return (
     <svg
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       id="Cloud-Sun-Rain--Streamline-Unicons"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>
         {"\n    Cloud Sun Rain Streamline Icon: https://streamlinehq.com\n  "}
@@ -753,15 +763,16 @@ export const RainShowers = () => {
 };
 
 // Snow Showers - codes: 85, 86
-export const SnowShowers = () => {
+export const SnowShowers = (props) => {
+  const { width, height } = props;
   return (
     <svg
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       id="Cloud-Meatball--Streamline-Unicons"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>
         {"\n    Cloud Meatball Streamline Icon: https://streamlinehq.com\n  "}
@@ -776,15 +787,16 @@ export const SnowShowers = () => {
 };
 
 // Thunderstorm - codes: 95, 96, 99
-export const Thunderstorm = () => {
+export const Thunderstorm = (props) => {
+  const { width, height } = props;
   return (
     <svg
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       id="Thunderstorm--Streamline-Unicons"
-      height={50}
-      width={60}
+      height={height}
+      width={width}
     >
       <desc>
         {"\n    Thunderstorm Streamline Icon: https://streamlinehq.com\n  "}

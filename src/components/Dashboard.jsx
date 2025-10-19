@@ -70,38 +70,38 @@ export const WeatherDashboard = () => {
 
     //Weather Codes
     const WeatherCodes = [
-        { code: 0, description: "Clear sky", icon: <ClearSky /> },
+        { code: 0, description: "Clear sky", icon: <ClearSky width="60" height="50" /> },
         { code: 1, description: "Mainly clear", icon: <ClearSky /> },
-        { code: 2, description: "Partly cloudy", icon: <PartlyCloudy /> },
-        { code: 3, description: "Cloudy", icon: <Cloudy /> },
-        { code: 45, description: "Fog", icon: <Fog /> },
+        { code: 2, description: "Partly cloudy", icon: <PartlyCloudy width="60" height="50" /> },
+        { code: 3, description: "Cloudy", icon: <Cloudy width="60" height="50" /> },
+        { code: 45, description: "Fog", icon: <Fog width="60" height="50" /> },
         { code: 48, description: "Rime fog", icon: <Fog /> },
-        { code: 51, description: "Light drizzle", icon: <Drizzle /> },
+        { code: 51, description: "Light drizzle", icon: <Drizzle width="60" height="50" /> },
         { code: 53, description: "Moderate drizzle", icon: <Drizzle /> },
         { code: 55, description: "Dense drizzle", icon: <Drizzle /> },
         { code: 56, description: "Light freezing drizzle", icon: <Drizzle /> },
         { code: 57, description: "Dense freezing drizzle", icon: <Drizzle /> },
-        { code: 61, description: "Slight rain", icon: <Rain /> },
+        { code: 61, description: "Slight rain", icon: <Rain width="60" height="50" /> },
         { code: 63, description: "Moderate rain", icon: <Rain /> },
         { code: 65, description: "Heavy rain", icon: <Rain /> },
         { code: 66, description: "Light freezing rain", icon: <Rain /> },
         { code: 67, description: "Heavy freezing rain", icon: <Rain /> },
-        { code: 71, description: "Slight snow fall", icon: <Snow /> },
+        { code: 71, description: "Slight snow fall", icon: <Snow width="60" height="50" /> },
         { code: 73, description: "Moderate snow fall", icon: <Snow /> },
         { code: 75, description: "Heavy snow fall", icon: <Snow /> },
         { code: 77, description: "Snow grains", icon: <Snow /> },
-        { code: 80, description: "Slight Showers", icon: <RainShowers /> },
+        { code: 80, description: "Slight Showers", icon: <RainShowers width="60" height="50" /> },
         { code: 81, description: "Moderate Showers", icon: <RainShowers /> },
         { code: 82, description: "Violent Showers", icon: <RainShowers /> },
-        { code: 85, description: "Slight Snow", icon: <SnowShowers /> },
+        { code: 85, description: "Slight Snow", icon: <SnowShowers width="60" height="50" /> },
         { code: 86, description: "Heavy Snow", icon: <SnowShowers /> },
-        { code: 95, description: "Thunderstorm: Slight", icon: <Thunderstorm /> },
+        { code: 95, description: "Thunderstorm: Slight", icon: <Thunderstorm width="60" height="50" /> },
         { code: 96, description: "Thunderstorm: slight hail", icon: <Thunderstorm /> },
         { code: 99, description: "Thunderstorm: heavy hail", icon: <Thunderstorm /> },
     ];
 
-    console.log("weatherdisc", weatherDesc);
-    console.log('Icon', weatherIcon);
+    // console.log("weatherdisc", weatherDesc);
+    // console.log('Icon', weatherIcon);
 
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
@@ -194,7 +194,7 @@ export const WeatherDashboard = () => {
             const matchedWeather = WeatherCodes.find(
                 (item) => item.code === weather.dailyWeatherCode
             );
-            console.log(matchedWeather.icon)
+            // console.log(matchedWeather.icon)
 
             if (matchedWeather) {
                 setWeatherDesc(matchedWeather.description);
@@ -282,7 +282,7 @@ export const WeatherDashboard = () => {
                                         </p>
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-6xl opacity-60">{weatherIcon}</div>
+                                        <div className="opacity-60">{weatherIcon}</div>
                                         <div className="text-sm text-gray-400">{weatherDesc}</div>
                                     </div>
                                 </div>
