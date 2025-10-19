@@ -4,11 +4,13 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  SunIcon,
+  CloudIcon,
 } from "lucide-react";
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
 import { User_Location_Data } from "../DataContexts";
-import { TempIcon } from "./AnimatedSvg";
+import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon } from "./AnimatedSvg";
 
 console.log("WeatherDashboard rendered");
 
@@ -459,7 +461,7 @@ export const WeatherDashboard = () => {
               {/* Feels Like */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex  md:items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span className="temp-svg">
+                  <span>
              <TempIcon/>
                   </span>
                   <span>Feels like</span>
@@ -475,7 +477,7 @@ export const WeatherDashboard = () => {
               {/* Pressure */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400  mb-1 md:mb-3">
-                  <span>📊</span>
+                  <span><PressureIcon/></span>
                   <span>Pressure</span>
                 </div>
                 <div className=" text-lg md:text-3xl font-semibold mb-3">
@@ -489,7 +491,7 @@ export const WeatherDashboard = () => {
               {/* Humidity */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400  mb-1 md:mb-3">
-                  <span>💧</span>
+                  <span><RainDropIcon/></span>
                   <span>Humidity</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
@@ -501,7 +503,7 @@ export const WeatherDashboard = () => {
               {/* UV */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>☀️</span>
+                  <span><SunIcon/></span>
                   <span>UV</span>
                 </div>
                 <div className="tex-lg md:text-3xl font-semibold mb-3">
@@ -520,7 +522,7 @@ export const WeatherDashboard = () => {
               {/* Gusts */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>💨</span>
+                  <span><GustsIcon/></span>
                   <span>Gusts</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
@@ -534,7 +536,7 @@ export const WeatherDashboard = () => {
               {/* Cloud Cover */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>☁️</span>
+                  <span><CloudIcon/></span>
                   <span>Cloud Cover</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
@@ -548,7 +550,7 @@ export const WeatherDashboard = () => {
               {/* Daylight */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>🌅</span>
+                  <span><DayLightIcon/></span>
                   <span>Daylight</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
@@ -562,7 +564,7 @@ export const WeatherDashboard = () => {
               {/* Rain */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>🌧️</span>
+                  <span><RainDropIcon/></span>
                   <span>Rain</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
@@ -576,7 +578,7 @@ export const WeatherDashboard = () => {
               {/* Snowfall */}
               <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                 <div className="flex items-center gap-2 text-gray-400 mb-1 md:mb-3">
-                  <span>❄️</span>
+                  <span><SnowIcon/></span>
                   <span>Snowfall</span>
                 </div>
                 <div className="text-lg md:text-3xl font-semibold mb-3">
