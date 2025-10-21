@@ -7,6 +7,7 @@ import {
     SunIcon,
     CloudIcon,
     Cloudy,
+    Slice,
 } from "lucide-react";
 import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
@@ -36,9 +37,10 @@ export const WeatherDashboard = () => {
 
         try {
             const response = await fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto`
-            );
+                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto`);
             const weatherData = await response.json();
+
+            console.log(weatherData)
 
             setWeather({
                 temperature: weatherData.current_weather.temperature,
@@ -63,7 +65,7 @@ export const WeatherDashboard = () => {
         }
     };
 
-    console.log(weather);
+
 
     // console.log('Full locationData in WeatherDashboard:', locationData);
     // console.log('Full WeatherData in WeatherDashboard', weatherData)
@@ -73,9 +75,7 @@ export const WeatherDashboard = () => {
         { code: 0, description: "Clear sky", icon: <ClearSky width="60" height="50" /> },
         { code: 1, description: "Mainly clear", icon: <ClearSky /> },
         { code: 2, description: "Partly cloudy", icon: <PartlyCloudy width="60" height="50" /> },
-        // { code: 3, description: "Cloudy", icon: <Cloudy width="60" height="50" /> },
-        { code: 3, description: "Cloudy", icon: <SnowShowers width="60" height="50" /> },
-
+        { code: 3, description: "Cloudy", icon: <Cloudy width="60" height="50" /> },
         { code: 45, description: "Fog", icon: <Fog width="60" height="50" /> },
         { code: 48, description: "Rime fog", icon: <Fog /> },
         { code: 51, description: "Light drizzle", icon: <Drizzle width="60" height="50" /> },
@@ -101,6 +101,35 @@ export const WeatherDashboard = () => {
         { code: 96, description: "Thunderstorm: slight hail", icon: <Thunderstorm /> },
         { code: 99, description: "Thunderstorm: heavy hail", icon: <Thunderstorm /> },
     ];
+    const getWeatherIcon = (code) => {
+        const iconMap = {
+            0: "☀️",    // Clear sky
+            1: "🌤️",   // Mainly clear
+            2: "⛅",   // Partly cloudy
+            3: "☁️",    // Overcast
+            45: "🌫️",  // Foggy
+            48: "🌫️",  // Depositing rime fog
+            51: "🌦️",  // Light drizzle
+            53: "🌦️",  // Moderate drizzle
+            55: "🌧️",  // Dense drizzle
+            61: "🌧️",  // Slight rain
+            63: "🌧️",  // Moderate rain
+            65: "⛈️",   // Heavy rain
+            71: "🌨️",  // Slight snow
+            73: "🌨️",  // Moderate snow
+            75: "❄️",   // Heavy snow
+            77: "🌨️",  // Snow grains
+            80: "🌦️",  // Slight rain showers
+            81: "🌧️",  // Moderate rain showers
+            82: "⛈️",   // Violent rain showers
+            85: "🌨️",  // Slight snow showers
+            86: "❄️",   // Heavy snow showers
+            95: "⛈️",   // Thunderstorm
+            96: "⛈️",   // Thunderstorm with hail
+            99: "⛈️"    // Thunderstorm with heavy hail
+        };
+        return iconMap[code] || "🌤️";
+    };
 
     // console.log("weatherdisc", weatherDesc);
     // console.log('Icon', weatherIcon);
@@ -131,26 +160,30 @@ export const WeatherDashboard = () => {
     };
     const direction = getWindDirectionText(weather?.windDirection);
 
-    const hourlyData = [
-        { time: "5 AM", icon: "☁️", temp: "22°" },
-        { time: "6 AM", icon: "☁️", temp: "22°" },
-        { time: "7 AM", icon: "🌦️", temp: "23°" },
-        { time: "8 AM", icon: "🌦️", temp: "24°" },
-        { time: "9 AM", icon: "🌧️", temp: "25°" },
-        { time: "10 AM", icon: "🌧️", temp: "26°" },
-        { time: "11 AM", icon: "🌧️", temp: "27°" },
-        { time: "12 PM", icon: "🌧️", temp: "27°" },
-        { time: "1 PM", icon: "🌧️", temp: "26°" },
-        { time: "2 PM", icon: "🌧️", temp: "25°" },
-        { time: "3 PM", icon: "🌧️", temp: "25°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-        { time: "4 PM", icon: "🌧️", temp: "24°" },
-    ];
 
+
+
+    // 24 Hours
+    const tm = Object.values(weather?.hourlyTime || {});
+    const formattedTimes = tm.map((t) => {
+        // Extract the time portion (format like "2024-01-01T14:30:00")
+        const timeString = t.slice(11, 16); // Gets "14:30"
+        const date = new Date(`1970-01-01T${timeString}:00`); // Create valid date
+        return date.toLocaleTimeString([], {
+            hour: "2-digit",
+            hour12: true
+
+        });
+    });
+
+    const temps = Object.values(weather?.hourlyApparentTemp || {});
+    const weatherCodes = Object.values(weather?.hourlyWeatherCode || {});
+
+    const hourlyData = formattedTimes.map((time, index) => ({
+        time: time,
+        icon: getWeatherIcon(weatherCodes[index]),
+        temp: `${temps[index]}°`
+    }));
     const weeklyForecast = [
         { day: "Today", icon: "🌦️", low: "21°", high: "29°", range: 70 },
         { day: "Mon", icon: "🌦️", low: "21°", high: "29°", range: 70 },
@@ -212,7 +245,16 @@ export const WeatherDashboard = () => {
         }, 3000);
     }, [weather?.dailyWeatherCode]);
 
-    //Loading...
+
+
+
+
+
+
+
+
+
+    //Loader...
     if (loading) {
         return (
             <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
@@ -350,6 +392,7 @@ export const WeatherDashboard = () => {
                                     </div>
                                 </div>
 
+
                                 <div className="flex gap-3  overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab">
                                     {hourlyData.map((hour, index) => (
                                         <div
@@ -363,6 +406,7 @@ export const WeatherDashboard = () => {
                                             <div className="text-[15px] font-medium">{hour.temp}</div>
                                         </div>
                                     ))}
+
                                 </div>
                             </div>
                         </div>
