@@ -26,6 +26,7 @@ export const WeatherDashboard = () => {
     const [weatherIcon, setWeatherIcon] = useState("")
     const [per, setPre] = useState(80);
 
+
     //  Weather API
     const [weather, setWeather] = useState(null);
     const location = useContext(User_Location_Data);
@@ -59,6 +60,8 @@ export const WeatherDashboard = () => {
                 hourlyPrecipitation: weatherData.hourly.precipitation_probability,
                 hourlyUvIndex: weatherData.hourly.uv_index,
                 hourlyTime: weatherData.hourly.time,
+                hourlyCode: weatherData.hourly.weather_code
+
             });
         } catch (error) {
             console.error("Error fetching weather data:", error);
@@ -186,24 +189,36 @@ export const WeatherDashboard = () => {
 
     // 24 hr Weather temp, time, icons 
     const temps = Object.values(weather?.hourlyApparentTemp || {});
-    const weather_codes = Object.entries(weather?.hourlyWeatherCode || {});
 
-    // Codes and icons
-    const weather_icons = Object.entries(iconMap).map(([code, icon]) => {
-        const numericCode = Number(code);
+    //  codes are numbers
+    const hourlyCodes = (weather?.hourlyCode || []).map(Number);
 
-        console.log('weather code:', typeof numericCode);
-        // console.log('icon:', icon);
-        return { numericCode, icon };
+    //  icon list 
+    const weather_icons = Object.entries(iconMap).map(([code, icon]) => ({
+        numericCode: Number(code),
+        icon,
+    }));
+
+    // Match each hourly code with its icon
+    const hourlyIcons = hourlyCodes.map((code) => {
+        const matched = weather_icons.find((item) => item.numericCode === code);
+        return matched ? matched.icon : <Cloudy width="20" height="20" />; 
     });
 
+    console.log("Hourly icons:", hourlyIcons);
 
-    console.log('24 hr icons', weather_icons[0].numericCode)
+
+
+
+
+
+
+
 
 
     const hourlyData = formattedTimes.map((time, index) => ({
         time: time,
-        icon: weather_icons[1].icon,
+        icon: hourlyIcons[index],
         temp: `${temps[index]}°`
     }));
 
