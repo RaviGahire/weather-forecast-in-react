@@ -366,7 +366,7 @@ export const WeatherDashboard = () => {
                                         </p>
                                     </div>
                                     <div className="text-center">
-                                        <div className="opacity-60">{weatherIcon}</div>
+                                        <div className="opacity-40 flex items-center justify-center">{weatherIcon}</div>
                                         <div className="text-sm text-gray-400">{weatherDesc}</div>
                                     </div>
                                 </div>
