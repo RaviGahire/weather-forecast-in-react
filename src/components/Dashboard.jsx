@@ -70,7 +70,7 @@ export const WeatherDashboard = () => {
     // console.log('Full locationData in WeatherDashboard:', locationData);
     // console.log('Full WeatherData in WeatherDashboard', weatherData)
 
-    //Weather Codes
+    //Weather Codes and icons 
     const WeatherCodes = [
         { code: 0, description: "Clear sky", icon: <ClearSky width="60" height="50" /> },
         { code: 1, description: "Mainly clear", icon: <ClearSky /> },
@@ -101,38 +101,44 @@ export const WeatherDashboard = () => {
         { code: 96, description: "Thunderstorm: slight hail", icon: <Thunderstorm /> },
         { code: 99, description: "Thunderstorm: heavy hail", icon: <Thunderstorm /> },
     ];
-    const getWeatherIcon = (code) => {
-        const iconMap = {
-            0: "☀️",    // Clear sky
-            1: "🌤️",   // Mainly clear
-            2: "⛅",   // Partly cloudy
-            3: "☁️",    // Overcast
-            45: "🌫️",  // Foggy
-            48: "🌫️",  // Depositing rime fog
-            51: "🌦️",  // Light drizzle
-            53: "🌦️",  // Moderate drizzle
-            55: "🌧️",  // Dense drizzle
-            61: "🌧️",  // Slight rain
-            63: "🌧️",  // Moderate rain
-            65: "⛈️",   // Heavy rain
-            71: "🌨️",  // Slight snow
-            73: "🌨️",  // Moderate snow
-            75: "❄️",   // Heavy snow
-            77: "🌨️",  // Snow grains
-            80: "🌦️",  // Slight rain showers
-            81: "🌧️",  // Moderate rain showers
-            82: "⛈️",   // Violent rain showers
-            85: "🌨️",  // Slight snow showers
-            86: "❄️",   // Heavy snow showers
-            95: "⛈️",   // Thunderstorm
-            96: "⛈️",   // Thunderstorm with hail
-            99: "⛈️"    // Thunderstorm with heavy hail
-        };
-        return iconMap[code] || "🌤️";
+
+    //Weather Codes and icons for 24hr 
+    const iconMap = {
+        0: <ClearSky width="20" height="20" />,
+        1: <ClearSky width="20" height="20" />,
+        2: <PartlyCloudy width="20" height="20" />,
+        3: <Cloudy width="20" height="20" />,
+        45: <Fog width="20" height="20" />,
+        48: <Fog width="20" height="20" />,
+        51: <Drizzle width="20" height="20" />,
+        53: <Drizzle width="20" height="20" />,
+        55: <Drizzle width="20" height="20" />,
+        56: <Drizzle width="20" height="20" />,
+        57: <Drizzle width="20" height="20" />,
+        61: <Rain width="20" height="20" />,
+        63: <Rain width="20" height="20" />,
+        65: <Rain width="20" height="20" />,
+        66: <Rain width="20" height="20" />,
+        67: <Rain width="20" height="20" />,
+        71: <Snow width="20" height="20" />,
+        73: <Snow width="20" height="20" />,
+        75: <Snow width="20" height="20" />,
+        77: <Snow width="20" height="20" />,
+        80: <RainShowers width="20" height="20" />,
+        81: <RainShowers width="20" height="20" />,
+        82: <RainShowers width="20" height="20" />,
+        85: <SnowShowers width="20" height="20" />,
+        86: <SnowShowers width="20" height="20" />,
+        95: <Thunderstorm width="20" height="20" />,
+        96: <Thunderstorm width="20" height="20" />,
+        99: <Thunderstorm width="20" height="20" />
     };
 
-    // console.log("weatherdisc", weatherDesc);
-    // console.log('Icon', weatherIcon);
+
+
+
+
+
 
     // Directions based on API Data
     const getWindDirectionText = (deg) => {
@@ -176,14 +182,33 @@ export const WeatherDashboard = () => {
         });
     });
 
+
+
+    // 24 hr Weather temp, time, icons 
     const temps = Object.values(weather?.hourlyApparentTemp || {});
-    const weatherCodes = Object.values(weather?.hourlyWeatherCode || {});
+    const weather_codes = Object.entries(weather?.hourlyWeatherCode || {});
+
+    // Codes and icons
+    const weather_icons = Object.entries(iconMap).map(([code, icon]) => {
+        const numericCode = Number(code);
+
+        console.log('weather code:', typeof numericCode);
+        // console.log('icon:', icon);
+        return { numericCode, icon };
+    });
+
+
+    console.log('24 hr icons', weather_icons[0].numericCode)
+
 
     const hourlyData = formattedTimes.map((time, index) => ({
         time: time,
-        icon: getWeatherIcon(weatherCodes[index]),
+        icon: weather_icons[1].icon,
         temp: `${temps[index]}°`
     }));
+
+
+
     const weeklyForecast = [
         { day: "Today", icon: "🌦️", low: "21°", high: "29°", range: 70 },
         { day: "Mon", icon: "🌦️", low: "21°", high: "29°", range: 70 },
