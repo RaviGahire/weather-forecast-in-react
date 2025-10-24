@@ -24,7 +24,7 @@ export const WeatherDashboard = () => {
     const locationData = useContext(User_Location_Data);
     const [weatherDesc, setWeatherDesc] = useState("");
     const [weatherIcon, setWeatherIcon] = useState("")
-    const [per, setPre] = useState(80);
+
 
 
     //  Weather API
@@ -202,26 +202,20 @@ export const WeatherDashboard = () => {
     // Match each hourly code with its icon
     const hourlyIcons = hourlyCodes.map((code) => {
         const matched = weather_icons.find((item) => item.numericCode === code);
-        return matched ? matched.icon : <Cloudy width="20" height="20" />; 
+        return matched ? matched.icon : <Cloudy width="20" height="20" />;
     });
 
-    console.log("Hourly icons:", hourlyIcons);
-
-
-
-
-
-
-
-
-
-
+    // console.log("Hourly icons:", hourlyIcons);
     const hourlyData = formattedTimes.map((time, index) => ({
         time: time,
         icon: hourlyIcons[index],
         temp: `${temps[index]}°`
     }));
 
+    // hourly precipitation data 
+    const currentHour = new Date().getHours();
+    const precipitation_probability = weather?.hourlyPrecipitation || []
+    const currentPrecipitation = precipitation_probability[currentHour];
 
 
     const weeklyForecast = [
@@ -475,8 +469,9 @@ export const WeatherDashboard = () => {
                                 </div>
                                 <div className="mx-auto flex align-center justify-center">
                                     <WindCompass
-                                        windSpeed={weather?.windSpeed}
                                         windDirection={weather?.windDirection}
+                                        windSpeed={weather?.windSpeed}
+
                                     />
                                 </div>
                                 <div className="text-center text-[13px] text-gray-400 mt-4">
@@ -501,11 +496,11 @@ export const WeatherDashboard = () => {
                                     Precipitation
                                 </h3>
 
-                                <div className="text-[32px] font-semibold mb-5">{per}%</div>
+                                <div className="text-[32px] font-semibold mb-5">{currentPrecipitation}%</div>
 
                                 <div className="w-full h-3 bg-[#1a2332] rounded-full overflow-hidden mb-3">
                                     <div
-                                        style={{ width: `${per}%` }}
+                                        style={{ width: `${currentPrecipitation}%` }}
                                         className="relative h-full bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] rounded-full"
                                     >
                                         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-[0_0_0_3px_#243447]"></div>
