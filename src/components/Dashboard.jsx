@@ -226,6 +226,18 @@ export const WeatherDashboard = () => {
     const currentPrecipitation = precipitation_probability[currentHour];
 
 
+    // Weekly data 
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+   console.log(daily)
+
+
+    const transformedData = days.map((day, index) => ({
+        day,
+        maxTemp: daily?.maxTemp,
+        minTemp: daily?.minTemp,
+        icon: '☀️'
+    }));
+
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
     const handlePrev = () => {
@@ -513,7 +525,7 @@ export const WeatherDashboard = () => {
                         {/* Left Column - Weekly Forecast */}
                         <div className="space-y-3">
                             <Weekly
-                                dailyData={daily }
+                                dailyData={transformedData}
 
 
                             />
