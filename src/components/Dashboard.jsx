@@ -13,6 +13,7 @@ import { Footer } from "./Footer";
 import { WindCompass } from "./Compass";
 import { User_Location_Data } from "../DataContexts";
 import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "./AnimatedSvg";
+import { Weekly } from "./Weekly";
 
 console.log("WeatherDashboard rendered");
 
@@ -216,17 +217,7 @@ export const WeatherDashboard = () => {
     const currentHour = new Date().getHours();
     const precipitation_probability = weather?.hourlyPrecipitation || []
     const currentPrecipitation = precipitation_probability[currentHour];
-
-
-    const weeklyForecast = [
-        { day: "Today", icon: "🌦️", low: "21°", high: "29°", range: 70 },
-        { day: "Mon", icon: "🌦️", low: "21°", high: "29°", range: 70 },
-        { day: "Tue", icon: "🌦️", low: "20°", high: "30°", range: 75 },
-        { day: "Wed", icon: "🌦️", low: "21°", high: "31°", range: 80 },
-        { day: "Thu", icon: "🌦️", low: "22°", high: "30°", range: 65 },
-        { day: "Fri", icon: "☁️", low: "22°", high: "32°", range: 75 },
-        { day: "Sat", icon: "☁️", low: "23°", high: "31°", range: 70 },
-    ];
+   
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
@@ -278,12 +269,6 @@ export const WeatherDashboard = () => {
             setLoading(false);
         }, 3000);
     }, [weather?.dailyWeatherCode]);
-
-
-
-
-
-
 
 
 
@@ -520,27 +505,7 @@ export const WeatherDashboard = () => {
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr_280px] gap-4">
                         {/* Left Column - Weekly Forecast */}
                         <div className="space-y-3">
-                            {weeklyForecast.map((forecast, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-gray-900 rounded-xl p-4 flex items-center justify-between"
-                                >
-                                    <div className="w-16 text-sm font-medium">{forecast.day}</div>
-                                    <div className="text-3xl">{forecast.icon}</div>
-                                    <div className="flex items-center gap-3 flex-1 ml-4">
-                                        <span className="text-sm w-8">{forecast.low}</span>
-                                        <div className="flex-1 h-1.5 bg-[#0d1b2a] rounded-full overflow-hidden">
-                                            <div
-                                                className="h-full bg-gradient-to-r from-[#5b7fd6] via-[#8b6fd6] to-[#d65b9e] rounded-full"
-                                                style={{ width: `${forecast.range}%` }}
-                                            ></div>
-                                        </div>
-                                        <span className="text-sm w-8 text-right">
-                                            {forecast.high}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                          <Weekly/>
                         </div>
 
                         {/* Middle Column - Weather Details Grid */}
