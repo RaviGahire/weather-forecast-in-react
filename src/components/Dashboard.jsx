@@ -30,6 +30,7 @@ export const WeatherDashboard = () => {
 
     //  Weather API
     const [weather, setWeather] = useState(null);
+    const [daily, setDaily] = useState(null)
     const location = useContext(User_Location_Data);
     const lat = location?.latitude;
     const lon = location?.longitude;
@@ -39,7 +40,7 @@ export const WeatherDashboard = () => {
 
         try {
             const response = await fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto`);
+                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=7`);
             const weatherData = await response.json();
 
             console.log(weatherData)
@@ -64,6 +65,12 @@ export const WeatherDashboard = () => {
                 hourlyCode: weatherData.hourly.weather_code
 
             });
+            setDaily({
+                maxTemp: weatherData.daily.temperature_2m_max,
+                minTemp: weatherData.daily.temperature_2m_min,
+            })
+
+
         } catch (error) {
             console.error("Error fetching weather data:", error);
         }
@@ -217,7 +224,7 @@ export const WeatherDashboard = () => {
     const currentHour = new Date().getHours();
     const precipitation_probability = weather?.hourlyPrecipitation || []
     const currentPrecipitation = precipitation_probability[currentHour];
-   
+
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
@@ -505,7 +512,11 @@ export const WeatherDashboard = () => {
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr_280px] gap-4">
                         {/* Left Column - Weekly Forecast */}
                         <div className="space-y-3">
-                          <Weekly/>
+                            <Weekly
+                                dailyData={daily }
+
+
+                            />
                         </div>
 
                         {/* Middle Column - Weather Details Grid */}

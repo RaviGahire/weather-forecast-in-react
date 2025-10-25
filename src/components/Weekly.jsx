@@ -1,7 +1,10 @@
 
+export const Weekly = ({ dailyData }) => {
 
-export const Weekly = () => {
- const weeklyForecast = [
+
+    console.log('From weekly data', dailyData)
+
+    const weeklyForecast = [
         { day: "Today", icon: "🌦️", low: "21°", high: "29°", range: 70 },
         { day: "Mon", icon: "🌦️", low: "21°", high: "29°", range: 70 },
         { day: "Tue", icon: "🌦️", low: "20°", high: "30°", range: 75 },
