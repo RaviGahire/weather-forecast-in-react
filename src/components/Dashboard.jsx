@@ -68,6 +68,7 @@ export const WeatherDashboard = () => {
             setDaily({
                 maxTemp: weatherData.daily.temperature_2m_max,
                 minTemp: weatherData.daily.temperature_2m_min,
+                dailyCodes: weatherData.daily.weather_code,
             })
 
 
@@ -213,6 +214,8 @@ export const WeatherDashboard = () => {
         return matched ? matched.icon : <Cloudy width="20" height="20" />;
     });
 
+
+
     // console.log("Hourly icons:", hourlyIcons);
     const hourlyData = formattedTimes.map((time, index) => ({
         time: time,
@@ -225,18 +228,25 @@ export const WeatherDashboard = () => {
     const precipitation_probability = weather?.hourlyPrecipitation || []
     const currentPrecipitation = precipitation_probability[currentHour];
 
-
     // Weekly data 
+    const weeklyIcons = daily?.dailyCodes.map((code, i) => {
+        const matched = weather_icons.find((item) => item.numericCode === code)
+        return matched ? matched.icon : <Snow width="20" height="20" />
+    })
+
+    // console.log('Weeklyicons', weeklyIcons)
+
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-   console.log(daily)
-
-
     const transformedData = days.map((day, index) => ({
         day,
-        maxTemp: daily?.maxTemp,
-        minTemp: daily?.minTemp,
-        icon: '☀️'
+        maxTemp: daily?.maxTemp[index],
+        minTemp: daily?.minTemp[index],
+        icons: weeklyIcons,
     }));
+
+
+    // console.log(transformedData)
+
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
