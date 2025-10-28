@@ -230,6 +230,7 @@ export const WeatherDashboard = () => {
     const currentHour = new Date().getHours();
     const precipitation_probability = weather?.hourlyPrecipitation || []
     const currentPrecipitation = precipitation_probability[currentHour];
+    console.log(currentPrecipitation)
 
     // Weekly data 
     const weeklyIcons = daily?.dailyCodes.map((code, i) => {
@@ -260,11 +261,10 @@ export const WeatherDashboard = () => {
     const UVindex = weather?.hourlyUvIndex[currentHour];
     const sunrise = weather?.sunrise
     const sunset = weather?.sunset
-    console.log(sunrise, sunset)
     const daylightMs = new Date(sunset) - new Date(sunrise);
     const hours = Math.floor(daylightMs / (1000 * 60 * 60));
     const minutes = Math.round((daylightMs % (1000 * 60 * 60)) / (1000 * 60));
-
+    //  console.log(sunrise, sunset)
 
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
@@ -496,7 +496,7 @@ export const WeatherDashboard = () => {
                                     Wind
                                 </h3>
                                 <div className="text-[32px] font-semibold mb-5">
-                                    {weather.windSpeed}kt{" "}
+                                    {weather?.windSpeed}kt {' '}
                                     <span className="text-gray-400">{direction}</span>
                                 </div>
                                 <div className="mx-auto flex align-center justify-center">
