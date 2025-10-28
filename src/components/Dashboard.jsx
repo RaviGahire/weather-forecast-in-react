@@ -240,9 +240,17 @@ export const WeatherDashboard = () => {
         icons: weeklyIcons,
     }));
 
-
     // console.log(transformedData)
 
+//Weather Details Grid 
+
+
+const feelLike =  hourlyData.map((data,index) => data.temp)
+
+
+
+
+    
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
@@ -297,7 +305,7 @@ export const WeatherDashboard = () => {
 
 
 
-
+    // console.log(feelLike)
     //Loader...
     if (loading) {
         return (
@@ -316,7 +324,7 @@ export const WeatherDashboard = () => {
                 aria-label="weather-dashboard"
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
-                <SpeedInsights/>
+                <SpeedInsights />
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
                     <div>
                         <p className="text-md md:text-2xl font-semibold tracking-wide">
@@ -531,11 +539,7 @@ export const WeatherDashboard = () => {
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr_280px] gap-4">
                         {/* Left Column - Weekly Forecast */}
                         <div className="space-y-3 ">
-                            <Weekly
-                                dailyData={transformedData}
-
-
-                            />
+                            <Weekly dailyData={transformedData} />
                         </div>
 
                         {/* Middle Column - Weather Details Grid */}
@@ -549,7 +553,7 @@ export const WeatherDashboard = () => {
                                     <span>Feels like</span>
                                 </div>
                                 <div className=" text-lg md:text-3xl font-semibold mb-3">
-                                    27°
+                                    {feelLike[currentHour]}
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Feels warmer than actual temperature.
