@@ -19,7 +19,7 @@ export const Weekly = ({ dailyData }) => {
                 // console.log(leftOffset)
 
                 return (
-                    <div key={index} className="bg-gray-900 rounded-xl p-4 flex  items-center justify-between">
+                    <div key={index} className="bg-gray-900 rounded-xl p-4 md:p-6 flex   items-center justify-between">
                         <div className="w-16 text-sm font-medium"> {items}</div>
                         <div className="text-5xl ">{dailyData[index].icons[index]}</div>
                         <div className="flex items-center gap-3 flex-1 ml-4">
