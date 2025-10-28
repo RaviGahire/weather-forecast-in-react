@@ -14,6 +14,7 @@ import { WindCompass } from "./Compass";
 import { User_Location_Data } from "../DataContexts";
 import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "./AnimatedSvg";
 import { Weekly } from "./Weekly";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 console.log("WeatherDashboard rendered");
 
@@ -145,11 +146,6 @@ export const WeatherDashboard = () => {
         96: <Thunderstorm width="20" height="20" />,
         99: <Thunderstorm width="20" height="20" />
     };
-
-
-
-
-
 
 
     // Directions based on API Data
@@ -320,6 +316,7 @@ export const WeatherDashboard = () => {
                 aria-label="weather-dashboard"
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
+                <SpeedInsights/>
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
                     <div>
                         <p className="text-md md:text-2xl font-semibold tracking-wide">
@@ -533,7 +530,7 @@ export const WeatherDashboard = () => {
                 <div className="text-white py-3 md:p-5">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr_280px] gap-4">
                         {/* Left Column - Weekly Forecast */}
-                        <div className="space-y-3">
+                        <div className="space-y-3 ">
                             <Weekly
                                 dailyData={transformedData}
 
@@ -542,7 +539,7 @@ export const WeatherDashboard = () => {
                         </div>
 
                         {/* Middle Column - Weather Details Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 h-auto">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 ">
                             {/* Feels Like */}
                             <div className="bg-gray-900 rounded-xl p-3 md:p-5">
                                 <div className="flex  md:items-center gap-2 text-gray-400 mb-1 md:mb-3">
