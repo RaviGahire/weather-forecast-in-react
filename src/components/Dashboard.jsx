@@ -41,7 +41,7 @@ export const WeatherDashboard = () => {
 
         try {
             const response = await fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=7`);
+                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code,relative_humidity_2m,pressure_msl,cloud_cover,precipitation,rain,snowfall,wind_gusts_10m&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=7`);
             const weatherData = await response.json();
 
             console.log(weatherData)
@@ -63,7 +63,14 @@ export const WeatherDashboard = () => {
                 hourlyPrecipitation: weatherData.hourly.precipitation_probability,
                 hourlyUvIndex: weatherData.hourly.uv_index,
                 hourlyTime: weatherData.hourly.time,
-                hourlyCode: weatherData.hourly.weather_code
+                hourlyCode: weatherData.hourly.weather_code,
+                pressure: weatherData.hourly.pressure_msl,
+                humidity: weatherData.hourly.relative_humidity_2m,
+                gusts: weatherData.hourly.wind_gusts_10m,
+                clouds: weatherData.hourly.cloud_cover,
+                rain: weatherData.hourly.rain,
+                snow: weatherData.hourly.snowfall,
+
 
             });
             setDaily({
@@ -242,15 +249,23 @@ export const WeatherDashboard = () => {
 
     // console.log(transformedData)
 
-//Weather Details Grid 
+    //Weather Details Grid 
+    const feelLike = hourlyData.map((data, index) => data.temp);
+    const humidity = weather?.humidity[currentHour];
+    const gusts = weather?.gusts[currentHour];
+    const clouds = weather?.clouds[currentHour];
+    const rain = weather?.rain[currentHour];
+    const snow = weather?.snow[currentHour]
+    const pressure = weather?.pressure[currentHour];
+    const UVindex = weather?.hourlyUvIndex[currentHour];
+    const sunrise = weather?.sunrise
+    const sunset = weather?.sunset
+    console.log(sunrise, sunset)
+    const daylightMs = new Date(sunset) - new Date(sunrise);
+    const hours = Math.floor(daylightMs / (1000 * 60 * 60));
+    const minutes = Math.round((daylightMs % (1000 * 60 * 60)) / (1000 * 60));
 
 
-const feelLike =  hourlyData.map((data,index) => data.temp)
-
-
-
-
-    
 
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
@@ -304,8 +319,6 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
     }, [weather?.dailyWeatherCode]);
 
 
-
-    // console.log(feelLike)
     //Loader...
     if (loading) {
         return (
@@ -567,7 +580,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Pressure</span>
                                 </div>
                                 <div className=" text-lg md:text-3xl font-semibold mb-3">
-                                    951 hPa
+                                    {Math.round(pressure)} hPa
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Expect unstable weather conditions.
@@ -581,7 +594,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Humidity</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    84%
+                                    {humidity} %
                                 </div>
                                 <div className="text-sm text-gray-400">High humidity.</div>
                             </div>
@@ -593,7 +606,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>UV</span>
                                 </div>
                                 <div className="tex-lg md:text-3xl font-semibold mb-3">
-                                    7 - High
+                                    {UVindex === 0 && "It's Night" || UVindex}
                                 </div>
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className="flex-1 h-2 bg-[#0d1b2a] rounded-full overflow-hidden">
@@ -612,7 +625,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Gusts</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    18kt
+                                    {gusts}kt
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Max speed of wind gusts today.
@@ -626,7 +639,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Cloud Cover</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    100%
+                                    {clouds}%
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Overcast, expect cloudy conditions.
@@ -640,7 +653,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Daylight</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    11h 53m
+                                    {hours}h {minutes}m
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Balanced day and night.
@@ -654,7 +667,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Rain</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    0.0mm
+                                    {rain} mm
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     No rain, dry conditions expected.
@@ -668,7 +681,7 @@ const feelLike =  hourlyData.map((data,index) => data.temp)
                                     <span>Snowfall</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    0.0mm
+                                    {snow} mm
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     No snowfall expected.
