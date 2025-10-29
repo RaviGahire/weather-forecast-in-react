@@ -259,6 +259,7 @@ export const WeatherDashboard = () => {
     const snow = weather?.snow[currentHour]
     const pressure = weather?.pressure[currentHour];
     const UVindex = weather?.hourlyUvIndex[currentHour];
+    const Uvbar = Math.min((UVindex / 12) * 100, 100);
     const sunrise = weather?.sunrise
     const sunset = weather?.sunset
     const daylightMs = new Date(sunset) - new Date(sunrise);
@@ -609,8 +610,11 @@ export const WeatherDashboard = () => {
                                     {UVindex === 0 && "It's Night" || UVindex}
                                 </div>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <div className="flex-1 h-2 bg-[#0d1b2a] rounded-full overflow-hidden">
-                                        <div className="h-full w-[70%] bg-gradient-to-r from-green-400 via-yellow-400  to-red-400 rounded-full relative">
+                                    <div className="flex-1 h-2 bg-[#48596b9f] rounded-full overflow-hidden">
+                                        <div className="h-full bg-gradient-to-r from-green-400 via-yellow-400  to-red-400 rounded-full relative"
+                                            style={{ width: `${Uvbar}%` }}
+
+                                        >
                                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full border-2 border-[#1b2838]"></div>
                                         </div>
                                     </div>
