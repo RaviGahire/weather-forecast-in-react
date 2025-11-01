@@ -513,7 +513,7 @@ export const WeatherDashboard = () => {
                             </div>
 
                             {/* Precipitation Card */}
-                            <div className="bg-gray-900 rounded-xl p-6">
+                            <div className="bg-gray-900 rounded-xl p-6 ">
                                 <h3 className="flex items-center gap-2 text-sm font-normal text-gray-400 mb-5">
                                     <svg
                                         className="w-4 h-4 opacity-60"
@@ -531,7 +531,7 @@ export const WeatherDashboard = () => {
 
                                 <div className="text-[32px] font-semibold mb-5">{currentPrecipitation}%</div>
 
-                                <div className="w-full h-3 bg-[#1a2332] rounded-full overflow-hidden mb-3">
+                                <div className="w-full h-3  bg-[#1a2332] rounded-full overflow-hidden mb-3">
                                     <div
                                         style={{ width: `${currentPrecipitation}%` }}
                                         className="relative h-full bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] rounded-full"
@@ -540,7 +540,7 @@ export const WeatherDashboard = () => {
                                     </div>
                                 </div>
 
-                                <div className="text-center text-[13px] text-gray-400 mt-4">
+                                <div className="text-center text-[13px] text-gray-400 mt-6">
                                     Moderate chance of precipitation.
                                 </div>
                             </div>
