@@ -460,11 +460,11 @@ export const WeatherDashboard = () => {
                                 </div>
 
 
-                                <div className="flex gap-3  overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab">
+                                <div className="flex h-50 overflow-auto  cursor-grab">
                                     {hourlyData.map((hour, index) => (
                                         <div
                                             key={index}
-                                            className="flex flex-col items-center gap-2 min-w-[70px] "
+                                            className="flex flex-col justify-center items-center gap-2 min-w-[70px] "
                                         >
                                             <div className="text-[13px] text-gray-400 font-medium ">
                                                 {hour.time}
