@@ -21,7 +21,6 @@ import {
 import { AppLogo } from "./AppLogo";
 import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
-import AuthComponent from "../Auth/UserAuth";
 import { LocationFinder } from "./Findlocation";
 
 
@@ -43,7 +42,7 @@ export const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
-    userComp: <AuthComponent />,
+
   });
 
   return (
