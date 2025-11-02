@@ -40,7 +40,7 @@ export function WeatherNews() {
 
   useEffect(() => {
     const sources = ['bbc-news', 'cnn', 'fox-news', 'google-news'];
-    const severityLevels = ['high', 'medium', 'low', 'high', 'medium', 'low', 'medium', 'low', 'high', 'medium', 'low', 'high',];
+    const severityLevels = ['high', 'medium', 'low', 'high', 'medium', 'low','medium', 'low', 'high','medium', 'low', 'high',];
     const categories = ['rain', 'storm', 'heat', 'cold', 'drought', 'flood'];
 
     Promise.all(
@@ -67,9 +67,9 @@ export function WeatherNews() {
           title: item?.title || 'No title',
           description: item?.description || 'No description',
           category: categories[i % categories.length],
-          time: item?.publishedAt ? new Date(item.publishedAt) : new Date(),
+          time: item?.publishedAt ? new Date(item.publishedAt) : new Date() ,
           image: item?.urlToImage || '',
-          severity: severityLevels[i % severityLevels.length],
+          severity:severityLevels[i % severityLevels.length],
           location: item.source.name
         }));
 
@@ -207,7 +207,7 @@ export function WeatherNews() {
                 {/* Card Header */}
                 <div className="relative h-48  flex items-center justify-center overflow-hidden">
                   <div className={`text-8xl transition-transform duration-500 ${hoveredCard === item.id ? 'scale-125 rotate-12' : 'scale-100'}`}>
-                    <img src={item.image} alt="not avilable" />
+                <img src={item.image } alt="not avilable" />
                   </div>
                   <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${getSeverityColor(item.severity)}`}>
                     {item.severity.toUpperCase()}
