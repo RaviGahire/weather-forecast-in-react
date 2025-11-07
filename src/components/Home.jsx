@@ -3,7 +3,8 @@ import { Features } from './Features'
 import { CarouselSpacing } from './Review'
 import { AccordionIcons } from './FaqSection'
 import { Footer } from './Footer'
-import { TextRollCustomVariants } from './TextAnimation'
+import { AnimatedNumberBasic, TextRollCustomVariants } from './TextAnimation'
+import { IconUserStar } from '@tabler/icons-react'
 
 
 export const Home = () => {
@@ -41,16 +42,19 @@ export const Home = () => {
       >
         {/* Left: Text Content */}
         <div className="flex-1 w-full text-center lg:text-left mb-8 lg:mb-0 max-w-2xl lg:max-w-none">
-          <div className=" max-w-[250px]  sm:max-w-[400px] md:max-w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-700 mb-4 sm:mb-6">
-            <TextRollCustomVariants />
+          <div className=" max-w-[250px]  sm:max-w-[400px] md:max-w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 sm:mb-6">
+            <TextRollCustomVariants />   
+          
+                
+                  
           </div>
 
-          <p className="text-base md:max-w-[650px] mx-auto sm:text-lg md:text-xl lg:text-2xl text-blue-900 mb-3 sm:mb-4 px-2 sm:px-0">
+          <p className="text-base md:max-w-[650px] mx-auto sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-3 sm:mb-4 px-2 sm:px-0">
             Together We Forecast: Building Dreams, One Day at a Time! Get instant, accurate weather updates for your city. Stay prepared, wherever you are!
           </p>
 
-          <p className='md:max-w-[650px] mx-auto text-sm sm:text-base text-neutral-600 my-3 sm:my-4'>
-            1 million People like you have purchased this product!
+          <p className='md:max-w-[650px] flex gap-1 mx-auto text-sm sm:text-base text-neutral-600 my-3 sm:my-4'>
+            <IconUserStar stroke={1} /> <AnimatedNumberBasic/>Million people like you have purchased this product!
           </p>
 
           {/* Hero buttons */}

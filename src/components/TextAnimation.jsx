@@ -1,4 +1,6 @@
 import { TextRoll } from './motion-primitives/text-roll';
+import { useEffect, useState } from 'react';
+import { AnimatedNumber } from './motion-primitives/animated-number';
 
 export function TextRollCustomVariants() {
     return (
@@ -14,7 +16,27 @@ export function TextRollCustomVariants() {
                 },
             }}
         >
-        Weather-24 Your Live Forecaster
+            Weather 24 Your Live Forecaster...
         </TextRoll>
+    );
+}
+
+export function AnimatedNumberBasic() {
+    const [value, setValue] = useState(100000);
+
+    useEffect(() => {
+        setValue(10);
+    }, []);
+
+    return (
+        <div>
+            <AnimatedNumber
+                springOptions={{
+                    bounce: 0,
+                    duration: 3000,
+                }}
+                value={value}
+            />
+        </div>
     );
 }
