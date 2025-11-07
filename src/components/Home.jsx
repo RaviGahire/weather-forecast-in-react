@@ -42,27 +42,27 @@ export const Home = () => {
       >
         {/* Left: Text Content */}
         <div className="flex-1 w-full text-center lg:text-left mb-8 lg:mb-0 max-w-2xl lg:max-w-none">
-          <div className=" max-w-[250px]  sm:max-w-[400px] md:max-w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 sm:mb-6">
+          <div className=" max-w-[250px]  sm:max-w-[400px] md:max-w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F3460] mb-4 sm:mb-6">
             <TextRollCustomVariants />   
           
                 
                   
           </div>
 
-          <p className="text-base md:max-w-[650px] mx-auto sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-3 sm:mb-4 px-2 sm:px-0">
+          <p className="text-base md:max-w-[650px] mx-auto sm:text-lg md:text-xl lg:text-xl text-[#5B7A94] mb-3 sm:mb-4 px-2 sm:px-0">
             Together We Forecast: Building Dreams, One Day at a Time! Get instant, accurate weather updates for your city. Stay prepared, wherever you are!
           </p>
 
-          <p className='md:max-w-[650px] flex gap-1 mx-auto text-sm sm:text-base text-neutral-600 my-3 sm:my-4'>
+          <p className='md:max-w-[650px] flex gap-1 mx-auto text-sm sm:text-base  text-[#5B7A94] my-3 sm:my-4'>
             <IconUserStar stroke={1} /> <AnimatedNumberBasic/>Million people like you have purchased this product!
           </p>
 
           {/* Hero buttons */}
           <div className="flex md:max-w-[650px] mx-auto  flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6">
-            <button className="bg-blue-600 cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300 text-sm sm:text-base">
+            <button className="bg-[#0F3460] cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg shadow-amber-[#0f3360d7] border border-gray-200 hover:bg-[#0f3360d7] transition-all duration-300 text-sm sm:text-base">
               Try It Now
             </button>
-            <button className="bg-blue-600 cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300 text-sm sm:text-base">
+            <button className="bg-[#0F3460] cursor-pointer text-white px-6 py-3 rounded-full font-semibold shadow-lg shadow-amber-[#0f3360d7] border border-gray-200 hover:bg-[#0f3360d7] transition-all duration-300 text-sm sm:text-base">
               Free Till Today
             </button>
           </div>
