@@ -16,7 +16,7 @@ export const Features = () => {
 
             {/* Big Feature Section */}
             <div className="flex flex-col-reverse md:flex-row items-center p-8 md:p-12 border border-gray-200 shadow-xl rounded-2xl">             
-                <div className="flex-1 flex md:justify-center [mask-image:linear-gradient(to_top,transparent_0%,white_20%)]">
+                <div className="flex-1 flex md:justify-center mask-b-from-50">
                     <div className="relative overflow-hidden">
                         <img
                             src="/images/iphone-3.png"
