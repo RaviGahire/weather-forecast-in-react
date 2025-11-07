@@ -247,7 +247,7 @@ export const BellIcon = ({ isHovering }) => {
       height={24}
       viewBox="0 0 24 24"
       fill="none"
-      stroke="white"
+     stroke="currentColor"
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -279,16 +279,16 @@ export const NotificationIcon = () => {
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
-        Plan Your Outdoor Activities with Ease
+      <h2 className="text-xl md:text-3xl font-bold text-[#0F3460] mb-4">
+        Plan your outdoor activities with ease
       </h2>
-      <p className="text-lg text-blue-900 mb-4 flex items-center gap-2">
+      <p className="text-md md:text-lg text-[#4A5568] mb-4 flex  gap-2">
         <BellIcon isHovering={isHovering} />
         <span>
           Get notified before rain stops. Plan your outdoor activities
         </span>
       </p>
-      <p className="text-base text-gray-700">
+      <p className="text-sm md:text-md lg:text-base text-[#5B7A94]">
         Our platform combines accuracy, community, and well-being, making
         weather updates more meaningful and interactive than ever before.
       </p>
