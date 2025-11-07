@@ -1,7 +1,5 @@
 import React from "react";
-
 import { motion } from "framer-motion";
-import { head } from "motion/react-client";
 
 //PersonalizedCard
 export const PersonalizedIcon = ({ isHovering }) => {
@@ -77,12 +75,12 @@ export const PersonalizedCard = () => {
     <motion.div
       onHoverStart={() => setIsHovering(true)}
       onHoverEnd={() => setIsHovering(false)}
-      className="bg-blue-100 rounded-2xl shadow-lg px-4 py-2 md:py-4 flex flex-col items-start text-center hover:shadow-blue-400 transition duration-300 hover:cursor-pointer"
+      className="bg-[#0F3460] shadow-lg hover:shadow-[#0f3360b8] rounded-2xl  px-4 py-2 md:py-4 flex flex-col items-start text-center transition duration-300 hover:cursor-pointer"
     >
-      <h3 className="text-lg md:text-2xl  font-bold text-gray-600 mb-3 flex items-center gap-x-2">
+      <h3 className="text-lg md:text-2xl  font-bold text-white mb-3 flex items-center gap-x-2">
         <PersonalizedIcon isHovering={isHovering} /> Personalized
       </h3>
-      <p className="text-gray-700 text-base text-start">
+      <p className="text-gray-400 text-base text-start">
         A personalized weather report that shows the best time and place for
         couples to enjoy outdoor activities based on their preferences and
         location.
@@ -165,13 +163,13 @@ export const GalleryCard = () => {
     <motion.div
       onHoverStart={() => setIsHovering(true)}
       onHoverEnd={() => setIsHovering(false)}
-      className="bg-blue-100 rounded-2xl shadow-lg px-4 py-2 md:py-4 flex flex-col items-start text-center hover:shadow-blue-400 transition duration-300 hover:cursor-pointer"
+      className="bg-[#0F3460] shadow-lg hover:shadow-[#0f3360b8] rounded-2xl px-4 py-2 md:py-4 flex flex-col items-start text-center transition duration-300 hover:cursor-pointer"
     >
-      <h3 className="text-lg md:text-2xl font-bold text-gray-600 mb-3 flex items-center gap-x-2">
+      <h3 className="text-lg md:text-2xl font-bold text-white mb-3 flex items-center gap-x-2">
         <GalleryIcon isHovering={isHovering} />
         Gallery
       </h3>
-      <p className="text-gray-700 text-base text-start">
+      <p className="text-gray-400 text-base text-start">
         A cloud gallery that allows users to upload and share their photos and
         videos of the sky and the weather with other users and get feedback and
         tips.
@@ -226,13 +224,13 @@ export const MoodTrackerCard = () => {
     <motion.div
       onHoverStart={() => setIsHovering(true)}
       onHoverEnd={() => setIsHovering(false)}
-      className="bg-blue-100 rounded-2xl shadow-lg px-4 py-2 md:py-4 flex flex-col items-start text-center hover:shadow-blue-400 transition duration-300 hover:cursor-pointer"
+      className="bg-[#0F3460] shadow-lg hover:shadow-[#0f3360b8] rounded-2xl px-4 py-2 md:py-4 flex flex-col items-start text-center transition duration-300 hover:cursor-pointer"
     >
-      <h3 className="text-lg md:text-2xl font-bold text-gray-600 mb-3 flex items-center gap-x-2">
+      <h3 className="text-lg md:text-2xl font-bold text-white mb-3 flex items-center gap-x-2">
         <MoodTrackerIcon isHovering={isHovering} />
         Mood Tracker
       </h3>
-      <p className="text-gray-700 text-base text-start">
+      <p className="text-gray-400 text-base text-start">
         A mood tracker that analyzes the user's mood based on the weather and
         suggests activities, music, or quotes to cheer them up or calm them
         down.

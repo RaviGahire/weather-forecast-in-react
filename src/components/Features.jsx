@@ -1,9 +1,9 @@
-import React from 'react'
-import { motion } from 'motion/react'
 import { PersonalizedCard, GalleryCard, MoodTrackerCard, NotificationIcon } from './AnimatedSvg'
+
 export const Features = () => {
+
     return (
-        <section className="max-w-7xl mx-auto py-4 md:py-12 px-4">
+        <section aria-label='feature-section' className="max-w-7xl mx-auto py-4 md:py-12 px-4">
             {/* Top Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-12">
                 {/* Feature 1 */}
@@ -15,9 +15,7 @@ export const Features = () => {
             </div>
 
             {/* Big Feature Section */}
-            <div className="flex flex-col-reverse md:flex-row items-center p-8 md:p-12 bg-gradient-to-r from-blue-100 to-blue-300 shadow-xl rounded-2xl">
-
-                {/* Right: Image */}
+            <div className="flex flex-col-reverse md:flex-row items-center p-8 md:p-12 bg-gradient-to-r from-blue-100 to-blue-300 shadow-xl rounded-2xl">             
                 <div className="flex-1 flex md:justify-center ">
                     <div className="relative overflow-hidden">
                         <img
