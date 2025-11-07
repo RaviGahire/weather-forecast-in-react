@@ -26,7 +26,7 @@ export const Home = () => {
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
           <p className="text-white text-lg">Currently under development</p>
-          <p className="text-white text-lg">Loading...</p>
+          <p className="text-white text-lg loader overflow-hidden">Loading...</p>
 
         </div>
       </div>
