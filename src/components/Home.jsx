@@ -9,7 +9,6 @@ import { IconUserStar } from '@tabler/icons-react'
 
 export const Home = () => {
   const [loading, setLoading] = useState(true);
-  const [location,setLocation] = useState(false)
 
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export const Home = () => {
     setTimeout(() => {
  
       setLoading(false);
-    }, 4000);
+    }, 3000);
   }, []);
 
 
@@ -26,7 +25,7 @@ export const Home = () => {
       <div className=" min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mb-4"></div>
-          <p className="text-white text-lg">Currently under development</p>
+          {/* <p className="text-white text-lg">Currently under development</p> */}
           <p className="text-white text-lg loader overflow-hidden">Loading...</p>
 
         </div>
@@ -44,18 +43,15 @@ export const Home = () => {
         <div className="flex-1 w-full text-center lg:text-left mb-8 lg:mb-0 max-w-2xl lg:max-w-none">
           <div className=" max-w-[250px]  sm:max-w-[400px] md:max-w-[650px] mx-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F3460] mb-4 sm:mb-6">
             <TextRollCustomVariants />   
-          
-                
-                  
           </div>
 
           <p className="text-base md:max-w-[650px] mx-auto sm:text-lg md:text-xl lg:text-xl text-[#5B7A94] mb-3 sm:mb-4 px-2 sm:px-0">
             Together We Forecast: Building Dreams, One Day at a Time! Get instant, accurate weather updates for your city. Stay prepared, wherever you are!
           </p>
 
-          <p className='md:max-w-[650px] flex gap-1 mx-auto text-sm sm:text-base  text-[#5B7A94] my-3 sm:my-4'>
-            <IconUserStar stroke={1} /> <AnimatedNumberBasic/>Million people like you have purchased this product!
-          </p>
+          <div className='md:max-w-[650px] px-2 md:px-0 flex gap-1 mx-auto text-sm sm:text-base text-[#5B7A94] my-3 sm:my-4'>
+            <IconUserStar stroke={1} /> <AnimatedNumberBasic/><p className='text-start'>Million people like you have purchased this product!</p>
+          </div>
 
           {/* Hero buttons */}
           <div className="flex md:max-w-[650px] mx-auto  flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6">

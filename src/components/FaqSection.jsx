@@ -44,12 +44,12 @@ export function AccordionIcons() {
     <AccordionItem key={item.id} value={item.id} className='py-2'>
         <AccordionTrigger className='w-full text-left text-[#0F3460] '>
           <div className='flex items-center justify-between'>
-            <div className='text-xl font-semibold text-[#0F3460]  cursor-pointer mb-2'>{item.question}</div>
+            <div className='text-md md:text-xl font-semibold text-[#0F3460]  cursor-pointer mb-2'>{item.question}</div>
             <ChevronUp className='h-4 w-4  transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-blue-900' />
           </div>
         </AccordionTrigger>
         <AccordionContent>
-          <p className='text-[#071e39a9] '>
+          <p className='text-sm md:text-xl text-[#071e39a9] '>
              {item.answer}
           </p>
         </AccordionContent>
