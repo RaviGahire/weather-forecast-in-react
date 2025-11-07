@@ -90,17 +90,17 @@ export function CarouselSpacing() {
                <CarouselItem key={index} className='basis-1/1 md:basis-1/2 lg:basis-1/3 pl-4'>
                 <div className='flex items-center justify-center rounded-xl overflow-hidden '>
                   {/* review card */}
-                  <div className="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 border-l-4 border-teal-500 p-6 w-screen h-full ">
+                  <div className="bg-[#0F3460]  p-6 w-screen h-full ">
                     <div className="flex items-center gap-3 mb-4">
                       <img src={review.image} alt="user" className="w-12 h-12 rounded-full" />
                       <div>
-                        <h3 className="font-semibold text-slate-800">{review.name}</h3>
-                        <p className="text-sm text-gray-500">{review.business}</p>
+                        <h3 className="font-semibold text-white">{review.name}</h3>
+                        <p className="text-sm text-[#5B7A94]">{review.business}</p>
                       </div>
                     </div>
-                    <p className="text-blue-900 mb-3">{review.comment}</p>
-                    <div className="flex gap-1 text-gray-500">
-                      <span>Rating : 5-/{review.rating}</span>
+                    <p className="text-[#92a6b7] mb-3">{review.comment}</p>
+                    <div className="flex gap-1 text-[#5B7A94]">
+                      <span>★★★★★ ({review.rating})</span>
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export function CarouselSpacing() {
         </CarouselContent>
         <CarouselNavigation
           className='absolute -bottom-20 left-auto top-auto w-full justify-end gap-2'
-          classNameButton='bg-zinc-800 *:stroke-zinc-50 dark:bg-teal-500 dark:*:stroke-zinc-800 cursor-pointer'
+          classNameButton='bg-[#5B7A94] cursor-pointer'
           alwaysShow
         />
       </Carousel>
