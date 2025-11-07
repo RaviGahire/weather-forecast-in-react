@@ -42,14 +42,14 @@ export function AccordionIcons() {
  {
   faqs.map((item)=>(
     <AccordionItem key={item.id} value={item.id} className='py-2'>
-        <AccordionTrigger className='w-full text-left text-zinc-950 dark:text-blue-500'>
+        <AccordionTrigger className='w-full text-left text-[#0F3460] '>
           <div className='flex items-center justify-between'>
-            <div className='text-xl font-semibold text-blue-800 cursor-pointer mb-2'>{item.question}</div>
-            <ChevronUp className='h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-blue-900' />
+            <div className='text-xl font-semibold text-[#0F3460]  cursor-pointer mb-2'>{item.question}</div>
+            <ChevronUp className='h-4 w-4  transition-transform duration-200 group-data-expanded:-rotate-180 dark:text-blue-900' />
           </div>
         </AccordionTrigger>
         <AccordionContent>
-          <p className='text-zinc-500 dark:text-zinc-900'>
+          <p className='text-[#071e39a9] '>
              {item.answer}
           </p>
         </AccordionContent>
