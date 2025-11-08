@@ -232,8 +232,9 @@ export const WeatherDashboard = () => {
     const todayData = hourlyData.slice(startIndex, endIndex);
 
     // console.log(todayData); 
-
-
+const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % (maxIndex + 1));
+const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (maxIndex + 1));
+ 
 
     // hourly precipitation data 
     const currentHour = new Date().getHours();
@@ -275,17 +276,9 @@ export const WeatherDashboard = () => {
     const hours = Math.floor(daylightMs / (1000 * 60 * 60));
     const minutes = Math.round((daylightMs % (1000 * 60 * 60)) / (1000 * 60));
     //  console.log(sunrise, sunset)
-
-
     const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
 
-    const handlePrev = () => {
-        setCurrentIndex((prev) => Math.max(0, prev - 1));
-    };
 
-    const handleNext = () => {
-        setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-    };
     const cities = [
         "Achalpur",
         "Adawad",
@@ -429,7 +422,8 @@ export const WeatherDashboard = () => {
 
                             {/*24hr Hourly Forecast Card */}
                             <div className="bg-gray-900 rounded-xl p-6 overflow-hidden">
-                                <div className="flex items-center justify-between  gap-2 mb-5">
+                                {/* Header */}
+                                <div className="flex items-center justify-between gap-2 mb-5">
                                     <div className="flex items-center gap-1">
                                         <svg
                                             className="w-[18px] h-[18px] opacity-60"
@@ -456,33 +450,41 @@ export const WeatherDashboard = () => {
                                             Hourly {locationData?.city} Weather Forecast
                                         </h3>
                                     </div>
-                                    <div className=" flex gap-x-3 justify-between">
+
+                                    <div className="flex gap-x-3 justify-between">
                                         <ChevronLeft
-                                            onClick={() => handleNext()}
-                                            className="cursor-pointer"
-                                        />{" "}
+                                            onClick={prevSlide}
+                                            className="cursor-pointer hover:text-white text-gray-400"
+                                        />
                                         <ChevronRight
-                                            onClick={() => handlePrev()}
-                                            className="cursor-pointer"
+                                            onClick={nextSlide}
+                                            className="cursor-pointer hover:text-white text-gray-400"
                                         />
                                     </div>
                                 </div>
 
-
-                                <div className="flex h-50 overflow-auto  cursor-grab">
-                                    {todayData.map((hour, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex flex-col justify-center items-center gap-2 min-w-[70px] "
-                                        >
-                                            <div className="text-[13px] text-gray-400 font-medium ">
-                                                {hour.time}
+                                {/* Carousel Section */}
+                                <div className="relative overflow-hidden">
+                                    <div
+                                        className="flex transition-transform duration-500 ease-in-out"
+                                        style={{
+                                            transform: `translateX(-${currentIndex * 10}%)`,
+                                            
+                                        }}
+                                    >
+                                        {todayData.map((hour, index) => (
+                                            <div
+                                                key={index}
+                                                className="flex flex-col justify-center items-center gap-2 min-w-[70px] "
+                                            >
+                                                <div className="text-[13px] text-gray-400 font-medium">
+                                                    {hour.time}
+                                                </div>
+                                                <div className="text-[32px] opacity-80">{hour.icon}</div>
+                                                <div className="text-[15px] font-medium">{hour.temp}°</div>
                                             </div>
-                                            <div className="text-[32px] opacity-80">{hour.icon}</div>
-                                            <div className="text-[15px] font-medium">{hour.temp}</div>
-                                        </div>
-                                    ))}
-
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
