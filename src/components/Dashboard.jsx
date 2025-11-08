@@ -181,9 +181,6 @@ export const WeatherDashboard = () => {
     };
     const direction = getWindDirectionText(weather?.windDirection);
 
-
-
-
     // 24 Hours
     const tm = Object.values(weather?.hourlyTime || {});
     const formattedTimes = tm.map((t) => {
@@ -201,6 +198,8 @@ export const WeatherDashboard = () => {
 
     // 24 hr Weather temp, time, icons 
     const temps = Object.values(weather?.hourlyApparentTemp || {});
+
+    console.log(temps)
 
     //  codes are numbers
     const hourlyCodes = (weather?.hourlyCode || []).map(Number);
