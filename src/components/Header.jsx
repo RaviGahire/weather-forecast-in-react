@@ -22,6 +22,7 @@ import { AppLogo } from "./AppLogo";
 import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
+import ErrorBoundary from "./ErorrBoundary";
 
 
 export const Header = () => {
@@ -32,7 +33,7 @@ export const Header = () => {
     {
       id: 2,
       path: "/dashboard",
-      element: <LocationFinder><WeatherDashboard /></LocationFinder>,
+      element: <LocationFinder><ErrorBoundary><WeatherDashboard /></ErrorBoundary></LocationFinder>,
       title: "Weather",
     },
     { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },

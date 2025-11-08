@@ -196,10 +196,10 @@ export const WeatherDashboard = () => {
 
 
 
-    // 24 hr Weather temp, time, icons 
+    // 24 hr grid Weather temp, time, icons 
     const temps = Object.values(weather?.hourlyApparentTemp || {});
 
-    console.log(temps)
+
 
     //  codes are numbers
     const hourlyCodes = (weather?.hourlyCode || []).map(Number);
@@ -216,20 +216,30 @@ export const WeatherDashboard = () => {
         return matched ? matched.icon : <Cloudy width="20" height="20" />;
     });
 
-
-
     // console.log("Hourly icons:", hourlyIcons);
-    const hourlyData = formattedTimes.map((time, index) => ({
-        time: time,
-        icon: hourlyIcons[index],
-        temp: `${temps[index]}°`
-    }));
+
+    const hourlyData = formattedTimes.map((time, index) => (
+        {
+            time: time,
+            icon: hourlyIcons[index],
+            temp: `${temps[index]}°`
+        }));
+    //Only 24 hr data
+    const hoursPerDay = 24;
+    const currentDayIndex = new Date().getDay();
+    const startIndex = currentDayIndex * hoursPerDay;
+    const endIndex = startIndex + hoursPerDay;
+    const todayData = hourlyData.slice(startIndex, endIndex);
+
+    // console.log(todayData); 
+
+
 
     // hourly precipitation data 
     const currentHour = new Date().getHours();
     const precipitation_probability = weather?.hourlyPrecipitation || []
     const currentPrecipitation = precipitation_probability[currentHour];
-    console.log(currentPrecipitation)
+    // console.log(currentPrecipitation)
 
     // Weekly data 
     const weeklyIcons = daily?.dailyCodes.map((code, i) => {
@@ -460,7 +470,7 @@ export const WeatherDashboard = () => {
 
 
                                 <div className="flex h-50 overflow-auto  cursor-grab">
-                                    {hourlyData.map((hour, index) => (
+                                    {todayData.map((hour, index) => (
                                         <div
                                             key={index}
                                             className="flex flex-col justify-center items-center gap-2 min-w-[70px] "

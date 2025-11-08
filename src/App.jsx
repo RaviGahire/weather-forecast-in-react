@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header } from './components/Header'
+import ErrorBoundary from './components/ErorrBoundary'
 
 
 function App() {
@@ -7,8 +8,10 @@ function App() {
 
   return (
     <>
-      
-    <Header/>
+      <ErrorBoundary>
+            <Header/>
+      </ErrorBoundary>
+
  
     </>
   )
