@@ -342,7 +342,7 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
                 <SpeedInsights />
-                <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
+                <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-3 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
                     <div>
                         <p className=" text-lg md:text-2xl font-semibold text-gray-100 tracking-tight leading-snug">
                                                     
@@ -357,8 +357,8 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                 </div>
                 {/* Weather Map */}
                 <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-700 animate-fadeIn">
-                    <div className="bg-gray-900 p-4 tracking-wide">
-                        <h2 className="text-xl font-semibold text-neutral-100">
+                    <div className=" bg-[#0c2545] p-4 tracking-wide">
+                        <h2 className="text-base md:text-xl font-semibold text-neutral-100">
                             Your live weather map
                         </h2>
                         <p className="text-sm text-gray-400">
@@ -368,7 +368,6 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                     <iframe
                         src="https://embed.windy.com/embed2.html?lat=19.07&lon=72.87&zoom=5&level=surface&overlay=wind"
                         className="w-full h-96"
-                        frameBorder="0"
                         allowFullScreen
                     ></iframe>
                 </div>
@@ -385,28 +384,27 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                                     {locationData?.localityInfo?.administrative?.[2]?.name ||
                                         "District not found"}
                                 </h3>
-
-                                <div className="flex justify-between  items-center mb-20">
-                                    <div>
+                                <div className="flex justify-between items-center mb-20">
+                                    <div className="flex-0">
                                         <h1 className="text-[32px] font-semibold">
                                             {locationData?.city}
-                                        </h1>
+                                        </h1>  
                                         <p className="text-sm text-gray-400">
                                             {locationData?.localityInfo?.administrative?.[1]?.name}{" "}
                                             {locationData?.localityInfo?.administrative?.[0]?.isoName}
                                         </p>
                                     </div>
-                                    <div className="text-center">
-                                        <div className="opacity-40 flex items-center justify-center">{weatherIcon}</div>
+                                    <div >
+                                        <div className="opacity-80 flex items-center justify-center">{weatherIcon}</div>
                                         <div className="text-sm text-gray-400">{weatherDesc}</div>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center">
+                                <div className="flex justify-between items-cente">
                                     <div className="text-[96px] font-light leading-none">
                                         {weather?.temperature}°
                                     </div>
-                                    <div className="text-right">
-                                        <div className="text-sm text-gray-400 my-1">
+                                    <div className="text-start  place-content-end ">
+                                        <div className="text-sm  text-gray-400 my-1">
                                             Low{" "}
                                             <span className="text-white ml-2">
                                                 {Math.round(weather?.minTemp)}°
