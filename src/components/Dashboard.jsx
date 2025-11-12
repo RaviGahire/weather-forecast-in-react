@@ -15,6 +15,7 @@ import { User_Location_Data } from "../DataContexts";
 import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "./AnimatedSvg";
 import { Weekly } from "./Weekly";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { IconBrandCitymapper } from "@tabler/icons-react";
 
 console.log("WeatherDashboard rendered");
 
@@ -341,11 +342,12 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
                 <SpeedInsights />
-                <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-gray-900 text-neutral-100 shadow-xl border animate-fadeIn">
+                <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-2 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
                     <div>
-                        <p className="text-md md:text-2xl font-semibold tracking-wide">
-                            <span className="text-yellow-400">{locationData?.city}</span>:
-                            current weather conditions
+                        <p className=" text-lg md:text-2xl font-semibold text-gray-100 tracking-tight leading-snug">
+                                                    
+                            Current weather conditions in <span className="text-gray-300 underline">{locationData?.city}</span>
+                              
                         </p>
                         <p className="mt-1 text-sm text-gray-400">
                             Stay updated with the latest weather information to plan your day
