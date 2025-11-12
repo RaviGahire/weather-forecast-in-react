@@ -233,9 +233,9 @@ export const WeatherDashboard = () => {
     const todayData = hourlyData.slice(startIndex, endIndex);
 
     // console.log(todayData); 
-const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % (maxIndex + 1));
-const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (maxIndex + 1));
- 
+    const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % (maxIndex + 1));
+    const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (maxIndex + 1));
+
 
     // hourly precipitation data 
     const currentHour = new Date().getHours();
@@ -345,9 +345,9 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-3 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
                     <div>
                         <p className=" text-lg md:text-2xl font-semibold text-gray-100 tracking-tight leading-snug">
-                                                    
+
                             Current weather conditions in <span className="text-gray-300 underline">{locationData?.city}</span>
-                              
+
                         </p>
                         <p className="mt-1 text-sm text-gray-400">
                             Stay updated with the latest weather information to plan your day
@@ -388,7 +388,7 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                                     <div className="flex-0">
                                         <h1 className="text-[32px] font-semibold">
                                             {locationData?.city}
-                                        </h1>  
+                                        </h1>
                                         <p className="text-sm text-gray-400">
                                             {locationData?.localityInfo?.administrative?.[1]?.name}{" "}
                                             {locationData?.localityInfo?.administrative?.[0]?.isoName}
@@ -466,10 +466,10 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                                 {/* Carousel Section */}
                                 <div className="relative overflow-hidden">
                                     <div
-                                        className="flex transition-transform duration-500 ease-in-out"
+                                        className="flex md:mt-20 transition-transform duration-500 ease-in-out"
                                         style={{
                                             transform: `translateX(-${currentIndex * 10}%)`,
-                                            
+
                                         }}
                                     >
                                         {todayData.map((hour, index) => (
@@ -511,12 +511,25 @@ const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (m
                                     {weather?.windSpeed}kt {' '}
                                     <span className="text-gray-400">{direction}</span>
                                 </div>
-                                <div className="mx-auto flex align-center justify-center">
-                                    <WindCompass
-                                        windDirection={weather?.windDirection}
-                                        windSpeed={weather?.windSpeed}
 
-                                    />
+                                <div className="flex">
+                                    <div className=" w-1/2">
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Wind {weather?.windSpeed} kph</p>
+                                        <div className="bg-gray-500 h-px" > </div>
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Guests {weather?.windSpeed} Kph</p>
+                                        <div className="bg-gray-500 h-px" > </div>
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Direction  {weather?.windDirection} {direction}</p>
+                                        <div className="bg-gray-500 h-px" > </div>
+                                    </div>
+
+                                    <div className="mx-auto w-1/2  flex align-center justify-center">
+                                        <WindCompass
+                                            windDirection={weather?.windDirection}
+                                            windSpeed={weather?.windSpeed}
+
+                                        />
+                                    </div>
+
                                 </div>
                                 <div className="text-center text-[13px] text-gray-400 mt-4">
                                     Very gentle wind.
