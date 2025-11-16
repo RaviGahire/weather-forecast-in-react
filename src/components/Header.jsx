@@ -45,7 +45,7 @@ export const Header = () => {
     { id: 4, path: "/about", element: <About />, title: "About" },
     { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
     { id: 6, path: "/login", element: <Login /> },
-        { id: 7, path: "/singup", element: <SignUp /> },
+    { id: 7, path: "/singup", element: <SignUp /> },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -138,7 +138,7 @@ export const Header = () => {
         {/* User Loing btn */}
         <div className="hidden lg:block" >
           <div className="cursor-pointer flex items-center justify-center w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-300">
-            <Link to='/login'> <IconUser /></Link>
+            <Link to='/singup'> <IconUser /></Link>
           </div>
         </div>
       </header>
