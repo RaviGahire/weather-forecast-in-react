@@ -1,25 +1,6 @@
-import React, { useState } from 'react'
-import { Footer } from './Footer';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react'
 
-export const Login = () => {
-
-    const navigate = useNavigate();
-
-    const [login, setLogin] = useState({ email: '', password: '' })
-
-    const handle_User = (e) => {
-        const { name, value } = e.target
-        setLogin({ ...login, [name]: value })
-    }
-
-    const handleSumbit = (e) => {
-        e.preventDefault();
-        console.log("Form submitted!", login);
-        setLogin({ email: '', password: '' })
-        navigate("/"); // go to home page
-    }
-
+export const Sinup = () => {
     return (
         <>
             <div className="flex min-h-full flex-col justify-center px-6  my-10 lg:px-8 ">
@@ -114,8 +95,6 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
-    );
-
+    )
 }
