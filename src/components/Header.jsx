@@ -4,18 +4,20 @@ import {
   Routes,
   Route,
   NavLink,
+  Link,
 } from "react-router-dom";
 import { useState } from "react";
 import { Home } from "./Home";
 import { About } from "./About";
 import { Contact } from "./Contact";
+
 import {
   IconMenu2,
   IconX,
   IconBrandX,
   IconBrandInstagram,
   IconBrandYoutube,
-  IconUsers,
+
   IconUser,
 } from "@tabler/icons-react";
 import { AppLogo } from "./AppLogo";
@@ -23,6 +25,8 @@ import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
 import ErrorBoundary from "./ErorrBoundary";
+import { Login } from "./Login.Jsx";
+
 
 
 export const Header = () => {
@@ -39,6 +43,7 @@ export const Header = () => {
     { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },
     { id: 4, path: "/about", element: <About />, title: "About" },
     { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
+    { id: 6, path: "/login", element: <Login /> }
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -129,13 +134,9 @@ export const Header = () => {
         </nav>
 
         {/* User Loing btn */}
-        <div className="hidden lg:block" onClick={() => setUser(!user)}>
+        <div className="hidden lg:block" >
           <div className="cursor-pointer flex items-center justify-center w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-300">
-            {user ? (
-              <IconUsers stroke={2} size={20} />
-            ) : (
-              <IconUser stroke={2} size={20} />
-            )}
+            <Link to='/login'> <IconUser /></Link>
           </div>
         </div>
       </header>
