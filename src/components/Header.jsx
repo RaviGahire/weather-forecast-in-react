@@ -17,7 +17,6 @@ import {
   IconBrandX,
   IconBrandInstagram,
   IconBrandYoutube,
-
   IconUser,
 } from "@tabler/icons-react";
 import { AppLogo } from "./AppLogo";
@@ -25,15 +24,7 @@ import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
 import ErrorBoundary from "./ErorrBoundary";
-<<<<<<< HEAD
-=======
-
->>>>>>> feature-b
 import SignUp from "./SignUp";
-import { Login } from "./Login.jsx";
-
-
-
 
 export const Header = () => {
 
@@ -49,14 +40,11 @@ export const Header = () => {
     { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },
     { id: 4, path: "/about", element: <About />, title: "About" },
     { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
-    // { id: 6, path: "/login", element: <Login /> },
     { id: 7, path: "/singup", element: <SignUp /> },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({
 
-  });
 
   return (
     <Router>
