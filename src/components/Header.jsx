@@ -25,7 +25,8 @@ import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
 import ErrorBoundary from "./ErorrBoundary";
 import SignUp from "./SignUp";
-import { Login } from "./SingIn.jsx";
+import Login from "./Singin";
+
 
 export const Header = () => {
 

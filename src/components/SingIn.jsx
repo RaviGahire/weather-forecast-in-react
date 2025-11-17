@@ -2,7 +2,7 @@ import  { useState } from 'react'
 import { Footer } from './Footer';
 import { Link, useNavigate } from 'react-router-dom';
 
-export const Login = () => {
+ const Login = () => {
 
     const navigate = useNavigate();
 
@@ -119,3 +119,4 @@ export const Login = () => {
     );
 
 }
+export default Login;
