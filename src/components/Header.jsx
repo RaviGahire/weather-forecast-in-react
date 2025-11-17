@@ -25,9 +25,8 @@ import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
 import ErrorBoundary from "./ErorrBoundary";
-// import { Login } from "./Login.jsx";
 import SignUp from "./SignUp";
-import { Login } from "./Login.Jsx";
+
 
 
 
@@ -45,7 +44,7 @@ export const Header = () => {
     { id: 3, path: "/news", element: <WeatherNews />, title: "Weather News" },
     { id: 4, path: "/about", element: <About />, title: "About" },
     { id: 5, path: "/contact", element: <Contact />, title: "Contact" },
-    { id: 6, path: "/login", element: <Login /> },
+    // { id: 6, path: "/login", element: <Login /> },
     { id: 7, path: "/singup", element: <SignUp /> },
   ];
 
