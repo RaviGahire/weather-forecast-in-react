@@ -25,7 +25,12 @@ import { WeatherDashboard } from "./Dashboard";
 import { WeatherNews } from "./News";
 import { LocationFinder } from "./Findlocation";
 import ErrorBoundary from "./ErorrBoundary";
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-b
 import SignUp from "./SignUp";
+import { Login } from "./Login.jsx";
 
 
 
