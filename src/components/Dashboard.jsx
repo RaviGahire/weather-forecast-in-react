@@ -1,34 +1,29 @@
 import { useEffect, useState, useContext } from "react";
-import {
-    ChevronUp,
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    SunIcon,
-    CloudIcon,
-    Cloudy,
-    Slice,
-} from "lucide-react";
+import {ChevronUp,ChevronDown,ChevronLeft,ChevronRight,SunIcon,CloudIcon,Cloudy,} from "lucide-react";
 import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "../utils/AnimatedSvg";
 import { Footer } from "./Footer";
 import { WindCompass } from "../utils/Compass";
-import { UserLocationContext } from "../context/DataContexts";
 import { Weekly } from "../utils/Weekly";
-
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import  {UserLocationContext}  from "../context/UserLocationContext"
 
-
-
-// console.log("WeatherDashboard rendered");
 
 export const WeatherDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cityIndex, setCityIndex] = useState(0);
-    const itemsPerView = 6;
-    const {locationData ,getLocation } = useContext(UserLocationContext);
     const [weatherDesc, setWeatherDesc] = useState("");
     const [weatherIcon, setWeatherIcon] = useState("")
+    const itemsPerView = 6;
+ 
+const { locationData, getUserLocation, error } = useContext(UserLocationContext);
+
+console.log(locationData)
+
+   if(!locationData) return null
+    
+
+
 
 
 
@@ -41,7 +36,7 @@ export const WeatherDashboard = () => {
     const lon = location?.longitude;
 
     // console.log(weather)
-// getLocation()
+    // getLocation()
     const getWeatherData = async (lat, lon) => {
 
         if (!lat || !lon) return;
@@ -307,7 +302,7 @@ export const WeatherDashboard = () => {
 
     useEffect(() => {
 
-        getWeatherData(lat, lon);
+        getWeatherData(locationData?.latitude, locationData?.longitude);
 
         if (weather?.dailyWeatherCode !== undefined) {
             const matchedWeather = WeatherCodes.find(
@@ -349,6 +344,7 @@ export const WeatherDashboard = () => {
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
                 <SpeedInsights />
+
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-3 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
                     <div>
                         <p className=" text-lg md:text-2xl font-semibold text-gray-100 tracking-tight leading-snug">
