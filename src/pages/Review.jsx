@@ -3,7 +3,7 @@ import {
   CarouselContent,
   CarouselNavigation,
   CarouselItem,
-} from './motion-primitives/carousel';
+} from '../components/motion-primitives/carousel';
 
 export function CarouselSpacing() {
   const customerReview = [

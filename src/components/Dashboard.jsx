@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
     ChevronUp,
     ChevronDown,
@@ -9,22 +9,24 @@ import {
     Cloudy,
     Slice,
 } from "lucide-react";
+import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "../utils/AnimatedSvg";
 import { Footer } from "./Footer";
-import { WindCompass } from "./Compass";
-import { User_Location_Data } from "../DataContexts";
-import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "./AnimatedSvg";
-import { Weekly } from "./Weekly";
-import { SpeedInsights } from "@vercel/speed-insights/react";
-import { IconBrandCitymapper } from "@tabler/icons-react";
+import { WindCompass } from "../utils/Compass";
+import { UserLocationContext } from "../context/DataContexts";
+import { Weekly } from "../utils/Weekly";
 
-console.log("WeatherDashboard rendered");
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
+
+
+// console.log("WeatherDashboard rendered");
 
 export const WeatherDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cityIndex, setCityIndex] = useState(0);
     const itemsPerView = 6;
-    const locationData = useContext(User_Location_Data);
+    const {locationData ,getLocation } = useContext(UserLocationContext);
     const [weatherDesc, setWeatherDesc] = useState("");
     const [weatherIcon, setWeatherIcon] = useState("")
 
@@ -33,19 +35,22 @@ export const WeatherDashboard = () => {
     //  Weather API
     const [weather, setWeather] = useState(null);
     const [daily, setDaily] = useState(null)
-    const location = useContext(User_Location_Data);
+
+    // console.log(location)
     const lat = location?.latitude;
     const lon = location?.longitude;
 
+    // console.log(weather)
+// getLocation()
     const getWeatherData = async (lat, lon) => {
+
         if (!lat || !lon) return;
 
         try {
             const response = await fetch(
                 `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code,relative_humidity_2m,pressure_msl,cloud_cover,precipitation,rain,snowfall,wind_gusts_10m&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=7`);
-            const weatherData = await response.json();
 
-            console.log(weatherData)
+            const weatherData = await response.json();
 
             setWeather({
                 temperature: weatherData.current_weather.temperature,
@@ -252,6 +257,7 @@ export const WeatherDashboard = () => {
     // console.log('Weeklyicons', weeklyIcons)
 
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
     const transformedData = days.map((day, index) => ({
         day,
         maxTemp: daily?.maxTemp[index],
@@ -300,6 +306,7 @@ export const WeatherDashboard = () => {
     };
 
     useEffect(() => {
+
         getWeatherData(lat, lon);
 
         if (weather?.dailyWeatherCode !== undefined) {

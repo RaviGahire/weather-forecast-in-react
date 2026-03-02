@@ -1,5 +1,5 @@
 import  { useState } from 'react'
-import { Footer } from './Footer';
+import { Footer } from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 
  const Login = () => {
