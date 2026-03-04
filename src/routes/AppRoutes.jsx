@@ -3,6 +3,10 @@ import { MainLayout } from "../layout/MainLayout";
 import { Home } from "../pages/Home";
 import { WeatherDashboard } from "../components/Dashboard";
 import {UserLocationFinder} from "../context/UserLocationFinder"
+import { WeatherNews } from "../pages/News";
+import { About } from "../pages/About";
+import { Contact } from "../pages/Contact";
+
 
 
 export const AppRoutes = () => {
@@ -10,9 +14,9 @@ export const AppRoutes = () => {
   const allRoute = [
     { path: '/', element: <Home/> },
     { path: '/weather-dashboard', element: <UserLocationFinder><WeatherDashboard/></UserLocationFinder>  },
-    { path: '/news', element: <h1>News</h1> },
-    { path: '/about', element: <h1>About</h1> },
-    { path: '/contact', element: <h1>Contact</h1> },
+    { path: '/news', element: <WeatherNews/> },
+    { path: '/about', element: <About/> },
+    { path: '/contact', element: <Contact/> },
   ];
 
   return (
