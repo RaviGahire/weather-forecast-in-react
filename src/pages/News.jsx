@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Footer } from './Footer'
+import { Footer } from '../components/Footer'
 import { Cloud, Wind, Droplets, Sun, AlertTriangle, TrendingUp, Calendar, Clock } from 'lucide-react';
 
 

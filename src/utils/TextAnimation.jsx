@@ -1,6 +1,6 @@
-import { TextRoll } from './motion-primitives/text-roll';
+import {TextRoll } from '../components/motion-primitives/text-roll'
+import {AnimatedNumber} from '../components/motion-primitives/animated-number'
 import { useEffect, useState } from 'react';
-import { AnimatedNumber } from './motion-primitives/animated-number';
 
 export function TextRollCustomVariants() {
     return (

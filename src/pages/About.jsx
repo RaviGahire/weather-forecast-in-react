@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Cloud, Users, Target, Award, MapPin, Mail, Phone, Zap, Shield, Heart, TrendingUp, Globe } from 'lucide-react';
-import {Footer} from './Footer'
+import {Footer} from '../components/Footer'
 
 export  function About() {
   const [activeTab, setActiveTab] = useState('mission');

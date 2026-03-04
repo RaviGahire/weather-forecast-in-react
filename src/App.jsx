@@ -1,6 +1,5 @@
-import React from 'react'
-import { Header } from './components/Header'
 import ErrorBoundary from './components/ErorrBoundary'
+import { AppRoutes } from './routes/AppRoutes'
 
 
 function App() {
@@ -9,7 +8,7 @@ function App() {
   return (
     <>
       <ErrorBoundary>
-            <Header/>
+           <AppRoutes/>
       </ErrorBoundary>
 
  

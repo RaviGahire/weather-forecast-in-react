@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from './motion-primitives/accordion';
+} from '../components/motion-primitives/accordion';
 import { ChevronUp } from 'lucide-react';
 const faqs = [
   {

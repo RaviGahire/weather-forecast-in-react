@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Footer } from './Footer';
+import { Footer } from '../components/Footer';
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare, User, Building, CheckCircle } from 'lucide-react';
 
 export  function Contact() {

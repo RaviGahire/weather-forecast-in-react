@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Features } from './Features'
 import { CarouselSpacing } from './Review'
 import { AccordionIcons } from './FaqSection'
-import { Footer } from './Footer'
-import { AnimatedNumberBasic, TextRollCustomVariants } from './TextAnimation'
+import { Footer } from '../components/Footer'
+// import { AnimatedNumberBasic, TextRollCustomVariants } from '../components/TextAnimation'
+import { AnimatedNumberBasic } from '../utils/TextAnimation'
+import { TextRollCustomVariants } from '../utils/TextAnimation'
 import { IconUserStar } from '@tabler/icons-react'
 
 

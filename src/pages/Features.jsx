@@ -1,4 +1,4 @@
-import { PersonalizedCard, GalleryCard, MoodTrackerCard, NotificationIcon } from './AnimatedSvg'
+import { PersonalizedCard, GalleryCard, MoodTrackerCard, NotificationIcon } from '../utils/AnimatedSvg'
 
 export const Features = () => {
 

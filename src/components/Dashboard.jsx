@@ -1,95 +1,29 @@
-import React, { useEffect, useState, useContext } from "react";
-import {
-    ChevronUp,
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    SunIcon,
-    CloudIcon,
-    Cloudy,
-    Slice,
-} from "lucide-react";
+import { useEffect, useState, useContext } from "react";
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, SunIcon, CloudIcon, Cloudy, } from "lucide-react";
+import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "../utils/AnimatedSvg";
 import { Footer } from "./Footer";
-import { WindCompass } from "./Compass";
-import { User_Location_Data } from "../DataContexts";
-import { DayLightIcon, GustsIcon, PressureIcon, RainDropIcon, SnowIcon, TempIcon, ClearSky, PartlyCloudy, Fog, Drizzle, Rain, Snow, RainShowers, SnowShowers, Thunderstorm } from "./AnimatedSvg";
-import { Weekly } from "./Weekly";
+import { WindCompass } from "../utils/Compass";
+import { Weekly } from "../utils/Weekly";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { IconBrandCitymapper } from "@tabler/icons-react";
+import { UserLocationContext } from "../context/UserLocationContext"
+import { FetchWeatherData } from "../utils/FetchWeatherData";
 
-console.log("WeatherDashboard rendered");
 
 export const WeatherDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cityIndex, setCityIndex] = useState(0);
-    const itemsPerView = 6;
-    const locationData = useContext(User_Location_Data);
     const [weatherDesc, setWeatherDesc] = useState("");
-    const [weatherIcon, setWeatherIcon] = useState("")
-
-
-
-    //  Weather API
+    const [weatherIcon, setWeatherIcon] = useState("");
     const [weather, setWeather] = useState(null);
-    const [daily, setDaily] = useState(null)
-    const location = useContext(User_Location_Data);
-    const lat = location?.latitude;
-    const lon = location?.longitude;
+    const itemsPerView = 6;
 
-    const getWeatherData = async (lat, lon) => {
-        if (!lat || !lon) return;
+    const { locationData } = useContext(UserLocationContext); if (!locationData) return {} // if location data is not available set empty obj
 
-        try {
-            const response = await fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,apparent_temperature,uv_index,weather_code,relative_humidity_2m,pressure_msl,cloud_cover,precipitation,rain,snowfall,wind_gusts_10m&forecast_days=1&daily=weather_code,sunrise,sunset,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=7`);
-            const weatherData = await response.json();
-
-            console.log(weatherData)
-
-            setWeather({
-                temperature: weatherData.current_weather.temperature,
-                windSpeed: weatherData.current_weather.windspeed,
-                windDirection: weatherData.current_weather.winddirection,
-                weatherCode: weatherData.current_weather.weathercode,
-                time: weatherData.current_weather.time,
-                minTemp: weatherData.daily.temperature_2m_min[0],
-                maxTemp: weatherData.daily.temperature_2m_max[0],
-                sunrise: weatherData.daily.sunrise[0],
-                sunset: weatherData.daily.sunset[0],
-                uvIndexMax: weatherData.daily.uv_index_max[0],
-                dailyWeatherCode: weatherData.daily.weather_code[0],
-                hourlyTemp: weatherData.hourly.temperature_2m,
-                hourlyApparentTemp: weatherData.hourly.apparent_temperature,
-                hourlyPrecipitation: weatherData.hourly.precipitation_probability,
-                hourlyUvIndex: weatherData.hourly.uv_index,
-                hourlyTime: weatherData.hourly.time,
-                hourlyCode: weatherData.hourly.weather_code,
-                pressure: weatherData.hourly.pressure_msl,
-                humidity: weatherData.hourly.relative_humidity_2m,
-                gusts: weatherData.hourly.wind_gusts_10m,
-                clouds: weatherData.hourly.cloud_cover,
-                rain: weatherData.hourly.rain,
-                snow: weatherData.hourly.snowfall,
+    console.log(weather)
+    // console.log(locationData)
 
 
-            });
-            setDaily({
-                maxTemp: weatherData.daily.temperature_2m_max,
-                minTemp: weatherData.daily.temperature_2m_min,
-                dailyCodes: weatherData.daily.weather_code,
-            })
-
-
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-        }
-    };
-
-
-
-    // console.log('Full locationData in WeatherDashboard:', locationData);
-    // console.log('Full WeatherData in WeatherDashboard', weatherData)
 
     //Weather Codes and icons 
     const WeatherCodes = [
@@ -180,30 +114,24 @@ export const WeatherDashboard = () => {
         // console.log(index)
         return directions[index];
     };
-    const direction = getWindDirectionText(weather?.windDirection);
+    const direction = getWindDirectionText(weather?.current.windDir);
 
-    // 24 Hours
-    const tm = Object.values(weather?.hourlyTime || {});
-    const formattedTimes = tm.map((t) => {
-        // Extract the time portion (format like "2024-01-01T14:30:00")
-        const timeString = t.slice(11, 16); // Gets "14:30"
-        const date = new Date(`1970-01-01T${timeString}:00`); // Create valid date
+
+    const timeArray = weather?.hourly?.time || [];
+    const formattedTimes = timeArray.map((t) => {
+        const date = new Date(t)
         return date.toLocaleTimeString([], {
-            hour: "2-digit",
+            hour: "numeric",
             hour12: true
-
-        });
-    });
-
+        })
+    })
 
 
     // 24 hr grid Weather temp, time, icons 
-    const temps = Object.values(weather?.hourlyApparentTemp || {});
-
-
+    const temps = Object.values(weather?.hourly?.apparentTemp || {});
 
     //  codes are numbers
-    const hourlyCodes = (weather?.hourlyCode || []).map(Number);
+    const hourlyCodes = (weather?.hourly.weatherCodes || []).map(Number);
 
     //  icon list 
     const weather_icons = Object.entries(iconMap).map(([code, icon]) => ({
@@ -212,12 +140,13 @@ export const WeatherDashboard = () => {
     }));
 
     // Match each hourly code with its icon
-    const hourlyIcons = hourlyCodes.map((code) => {
-        const matched = weather_icons.find((item) => item.numericCode === code);
-        return matched ? matched.icon : <Cloudy width="20" height="20" />;
-    });
+    const hourlyIcons = hourlyCodes.map(code => {
+        const matched = weather_icons.find(
+            item => item.numericCode === code
+        );
 
-    // console.log("Hourly icons:", hourlyIcons);
+        return matched?.icon || "Icon Not Found";
+    });
 
     const hourlyData = formattedTimes.map((time, index) => (
         {
@@ -225,26 +154,28 @@ export const WeatherDashboard = () => {
             icon: hourlyIcons[index],
             temp: `${temps[index]}°`
         }));
+
     //Only 24 hr data
     const hoursPerDay = 24;
     const currentDayIndex = new Date().getDay();
     const startIndex = currentDayIndex * hoursPerDay;
     const endIndex = startIndex + hoursPerDay;
     const todayData = hourlyData.slice(startIndex, endIndex);
-
+  
     // console.log(todayData); 
     const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % (maxIndex + 1));
     const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + maxIndex + 1) % (maxIndex + 1));
 
 
     // hourly precipitation data 
-    const currentHour = new Date().getHours();
-    const precipitation_probability = weather?.hourlyPrecipitation || []
+    const currentHour = new Date().getHours(); // Get the current hour index
+    const precipitation_probability = weather?.hourly?.precipProb || []
     const currentPrecipitation = precipitation_probability[currentHour];
     // console.log(currentPrecipitation)
 
+
     // Weekly data 
-    const weeklyIcons = daily?.dailyCodes.map((code, i) => {
+    const weeklyIcons = weather?.daily?.codes?.map((code, i) => {
         const matched = weather_icons.find((item) => item.numericCode === code)
         return matched ? matched.icon : <Snow width="20" height="20" />
     })
@@ -252,32 +183,41 @@ export const WeatherDashboard = () => {
     // console.log('Weeklyicons', weeklyIcons)
 
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
     const transformedData = days.map((day, index) => ({
         day,
-        maxTemp: daily?.maxTemp[index],
-        minTemp: daily?.minTemp[index],
+        maxTemp: weather?.daily?.maxTemps[index] ,
+        minTemp: weather?.daily?.minTemps[index] ,
         icons: weeklyIcons,
     }));
 
     // console.log(transformedData)
 
     //Weather Details Grid 
-    const feelLike = hourlyData.map((data, index) => data.temp);
-    const humidity = weather?.humidity[currentHour];
-    const gusts = weather?.gusts[currentHour];
-    const clouds = weather?.clouds[currentHour];
-    const rain = weather?.rain[currentHour];
-    const snow = weather?.snow[currentHour]
-    const pressure = weather?.pressure[currentHour];
-    const UVindex = weather?.hourlyUvIndex[currentHour];
-    const Uvbar = Math.min((UVindex / 12) * 100, 100);
-    const sunrise = weather?.sunrise
-    const sunset = weather?.sunset
-    const daylightMs = new Date(sunset) - new Date(sunrise);
-    const hours = Math.floor(daylightMs / (1000 * 60 * 60));
-    const minutes = Math.round((daylightMs % (1000 * 60 * 60)) / (1000 * 60));
-    //  console.log(sunrise, sunset)
-    const maxIndex = Math.max(0, hourlyData.length - itemsPerView);
+    const feelLike = weather?.hourly?.apparentTemp?.[currentHour];
+    const humidity = weather?.hourly?.humidity?.[currentHour];
+    const pressure = weather?.hourly?.pressure?.[currentHour];
+    // const UVindex = weather?.today?.uvMax;
+    const gusts = weather?.hourly?.gusts?.[currentHour];
+    const clouds = weather?.hourly?.clouds?.[currentHour];
+    const rain = weather?.hourly?.rain?.[currentHour];
+    const snow = weather?.hourly?.snow?.[currentHour];
+    const UVindex = weather?.hourly?.uvIndex?.[currentHour];
+    const Uvbar = Math.min(((UVindex || 0) / 12) * 100, 100);
+
+    const sunrise = weather?.today?.sunrise;
+    const sunset = weather?.today?.sunset;
+
+    let daylightText = "N/A";
+    if (sunrise && sunset) {
+        const daylightMs = new Date(sunset) - new Date(sunrise);
+        const hours = Math.floor(daylightMs / (1000 * 60 * 60));
+        const minutes = Math.round((daylightMs % (1000 * 60 * 60)) / (1000 * 60));
+        daylightText = `${hours}h ${minutes}m`;
+    }
+
+    // Carousel/List logic
+    const maxIndex = Math.max(0, (weather?.hourly?.time?.length || 0) - itemsPerView);
 
 
     const cities = [
@@ -300,7 +240,16 @@ export const WeatherDashboard = () => {
     };
 
     useEffect(() => {
-        getWeatherData(lat, lon);
+        //fetch wether data if user location data is available        
+        if (locationData) {
+            FetchWeatherData(locationData.latitude, locationData.longitude)
+                .then((data) => setWeather(data))
+                .catch(error => console.log(error.message))
+                .finally(setLoading(false))
+        } else {
+            console.log("Location data is not available")
+        }
+
 
         if (weather?.dailyWeatherCode !== undefined) {
             const matchedWeather = WeatherCodes.find(
@@ -320,7 +269,7 @@ export const WeatherDashboard = () => {
         setTimeout(() => {
             setLoading(false);
         }, 3000);
-    }, [weather?.dailyWeatherCode]);
+    }, [locationData]); //weather?.dailyWeatherCode
 
 
     //Loader...
@@ -342,6 +291,7 @@ export const WeatherDashboard = () => {
                 className="min-h-screen bg-gradient-to-b from-blue-100 via-blue-200 to-blue-300 p-4 md:p-6 "
             >
                 <SpeedInsights />
+
                 <div className="flex justify-between max-w-7xl mx-auto my-2 md:my-4 p-3 md:p-4 rounded-xl bg-[#0c2545] shadow-xl animate-fadeIn">
                     <div>
                         <p className=" text-lg md:text-2xl font-semibold text-gray-100 tracking-tight leading-snug">
@@ -401,19 +351,19 @@ export const WeatherDashboard = () => {
                                 </div>
                                 <div className="flex justify-between items-cente">
                                     <div className="text-[96px] font-light leading-none">
-                                        {weather?.temperature}°
+                                        {weather?.current?.temp}°
                                     </div>
                                     <div className="text-start  place-content-end ">
                                         <div className="text-sm  text-gray-400 my-1">
                                             Low{" "}
                                             <span className="text-white ml-2">
-                                                {Math.round(weather?.minTemp)}°
+                                                {Math.round(weather?.daily?.minTemps[0])}°
                                             </span>
                                         </div>
                                         <div className="text-sm text-gray-400 my-1">
                                             High{" "}
                                             <span className="text-white ml-2">
-                                                {Math.round(weather?.maxTemp)}°
+                                                {Math.round(weather?.daily?.maxTemps[0])}°
                                             </span>
                                         </div>
                                     </div>
@@ -508,24 +458,24 @@ export const WeatherDashboard = () => {
                                     Wind
                                 </h3>
                                 <div className="text-[32px] font-semibold mb-5">
-                                    {weather?.windSpeed}kt {' '}
+                                    {weather?.current?.windSpeed}kt {' '}
                                     <span className="text-gray-400">{direction}</span>
                                 </div>
 
                                 <div className="flex">
                                     <div className=" w-1/2">
-                                        <p className="mt-3 text-sm font-normal text-gray-400">Wind {weather?.windSpeed} kph</p>
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Wind {weather?.current?.windSpeed} kph</p>
                                         <div className="bg-gray-500 h-px" > </div>
-                                        <p className="mt-3 text-sm font-normal text-gray-400">Guests {weather?.windSpeed} Kph</p>
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Guests {weather?.hourly.gusts[currentHour]} Kph</p>
                                         <div className="bg-gray-500 h-px" > </div>
-                                        <p className="mt-3 text-sm font-normal text-gray-400">Direction  {weather?.windDirection} {direction}</p>
+                                        <p className="mt-3 text-sm font-normal text-gray-400">Direction {weather?.current.windDir} {direction}</p>
                                         <div className="bg-gray-500 h-px" > </div>
                                     </div>
 
                                     <div className="mx-auto w-1/2  flex align-center justify-center">
                                         <WindCompass
-                                            windDirection={weather?.windDirection}
-                                            windSpeed={weather?.windSpeed}
+                                            windDirection={weather?.current?.windDir}
+                                            windSpeed={weather?.current?.windSpeed}
 
                                         />
                                     </div>
@@ -591,7 +541,7 @@ export const WeatherDashboard = () => {
                                     <span>Feels like</span>
                                 </div>
                                 <div className=" text-lg md:text-3xl font-semibold mb-3">
-                                    {feelLike[currentHour]}
+                                    {feelLike}
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Feels warmer than actual temperature.
@@ -681,7 +631,7 @@ export const WeatherDashboard = () => {
                                     <span>Daylight</span>
                                 </div>
                                 <div className="text-lg md:text-3xl font-semibold mb-3">
-                                    {hours}h {minutes}m
+                                    {daylightText}
                                 </div>
                                 <div className="text-sm text-gray-400">
                                     Balanced day and night.
